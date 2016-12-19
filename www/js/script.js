@@ -3,8 +3,14 @@ $(function(){
 		    $('#contacts').hide();
 		    $('#tasks').hide();
 		    $('#web').hide();
-	    	$('#info').hide();
 		    $('#loader-holder').hide();
+				if (typeof(Storage) !== "undefined") {
+					if (localStorage.getItem("firstTimeUse") == "false") {
+						$('#info').hide();
+					} else {
+						localStorage.setItem("firstTimeUse", "false");
+					}
+				}
 		});
 
 
