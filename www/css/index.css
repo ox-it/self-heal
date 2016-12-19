@@ -1,0 +1,338 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+:root {
+  --main-color: #FF8C1D;
+  --main-bg-color: #E4E4E4;
+}
+
+* {
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:var(--main-bg-color);
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+/*-------------------------
+  General Styles
+--------------------------*/
+a, a:visited {
+  outline:none;
+  color:#1c4f64;
+}
+
+a:hover{
+  text-decoration:none;
+}
+
+section, footer, header{
+  display: block;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  bottom: 0;
+  background-color: #E4E4E4;
+}
+
+.back-button{
+  height: 50px;
+  width: 50px;
+  position: relative;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-image: url("../img/reply.png"); 
+    float: right;
+}
+
+/*----------------------------
+  The Header
+-----------------------------*/
+header{
+  background-color:#fff;
+  width: 100%;
+  position: fixed;
+  box-shadow:0 2px 4px rgba(0,0,0,0.3);
+    display: inline-block;
+    padding: 5px 0;
+    z-index: 99;
+}
+
+header h1, header h2{
+  text-align:center;
+    float: left;
+}
+
+header img{
+  margin: 0 auto;
+  display: block;
+}
+
+/*----------------------------
+  Thumbnails
+-----------------------------*/
+.thumbs{
+  display: none;
+}
+
+/*----------------------------
+  Accordion items
+-----------------------------*/
+
+.content-holder{
+  top: 50px;
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.acc-item{
+  border:5px solid var(--main-color);
+  background-color: var(--main-color);
+  border-radius:10px;
+  text-decoration:none;
+  display:inline-block;
+  box-shadow:0 1px 3px rgba(0,0,0,0.5);
+  margin: 10px 0 10px -5px;
+  width: 100%;
+}
+
+.acc-header{
+  color: var(--main-bg-color);
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.acc-center-text {
+  text-align: center;
+}
+
+.acc-text{
+  padding: 5px;
+  background-color: var(--main-bg-color);
+  border-radius: 0  0 10px 10px;
+}
+
+.acc-item a{
+  text-decoration: none;
+  color: var(--main-color) !important;
+  font-size:; 1.5em;
+}
+
+.acc-text p{
+  border-bottom: 1px dashed var(--main-color);
+  margin: 2px;
+}
+
+.acc-text ul{
+  padding-left: 20px;
+}
+
+.acc-text ol{
+  padding-left: 20px;
+}
+
+.acc-text span{
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.acc-hide{
+  display: none;
+}
+
+/*----------------------------
+  Home page
+-----------------------------*/
+
+#home{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#index-header img{
+  max-height: 35px;
+}
+
+#links-box{
+  background-image: url("../img/nav-links.png"); 
+}
+
+.home-icon{
+  position: relative;
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+  background-repeat: no-repeat;
+  background-position: center; 
+}
+
+.info-icon{
+}
+
+#icon-top-left{
+  float: left;
+  position: absolute;
+  background-image: url("../img/picture-icon.png"); 
+}
+
+#icon-top-right{
+  float: right;
+  background-image: url("../img/form-icon.png"); 
+}
+
+#icon-bottom-left{
+  float: left;
+  position: absolute;
+  bottom: 0;
+  background-image: url("../img/contacts-icon.png"); 
+  z-index: 5;
+}
+
+#icon-bottom-right{
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-image: url("../img/info.png"); 
+  background-size: 64px 64px;
+}
+
+.contact-icons{
+  float: left;
+  position: absolute;
+  top: 187px;
+  bottom: 0;
+  border-radius: 50%;
+  width: 63px;
+  height: 63px;
+  z-index: 4;
+}
+
+#phone-contact{
+  background-color: rgb(126, 155, 167);
+  background-image: url("../img/phone.png");
+}
+
+#web-contact{
+  background-color: rgb(101, 181, 116);
+  background-image: url("../img/web.png");
+}
+
+#info-contact{
+  background-color: rgb(83, 189, 170);
+  background-image: url("../img/book.png"); 
+}
+
+/*----------------------------
+  Home page
+-----------------------------*/
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 99;
+  width: 120px;
+  height: 120px;
+  margin: -68px 0 0 -68px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #FF8C1D;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+#loader-holder{
+  position: absolute;
+  z-index: 98;
+  width: 100%;
+  height: 100%;
+  background-color:var(--main-bg-color);
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+}
+
+#info-text{
+  margin: auto;
+  color: #4b4b4b;
+  font-size: 18px;
+  text-align: center;
+  font-style: italic;
+  font-family: cursive;
+}
+
+#gallery-back{
+  position: fixed;
+  bottom:0;
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-image: url("../img/reply.png"); 
+  float: right;
+  z-index:100001;
+}
