@@ -12,8 +12,14 @@ $(function(){
 	        $('#home').hide();
 	        $('#tasks').show();
 	    })
-	    $('#icon-bottom-right').click(function(){
-	        $('#home').hide();
+			$('#header-icon-info').click(function(){
+				if ($("#info").is(":visible")) {
+	        $('#info').hide();
+				} else {
+	        $('#info').show();
+				}
+	    })
+			$('#icon-bottom-right').click(function(){
 	        $('#info').show();
 	    })
 	    $('#info').click(function(){
