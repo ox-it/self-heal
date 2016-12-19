@@ -246,9 +246,11 @@
 				$(holder).addClass('placeholder-image');
 				var caption = document.createElement('div');
 				var blio = imageTitle;
-				$(caption).text(imageTitle);
-				$(caption).addClass("img-caption");
-				$(holder).append(caption);
+				if (imageTitle.length > 0) {
+					$(caption).text(imageTitle);
+					$(caption).addClass("img-caption");
+					$(holder).append(caption);
+				}
 				$(holder).append(this);
 				placeholders.eq(index).html(holder);
 			});
