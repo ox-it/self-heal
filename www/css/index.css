@@ -369,6 +369,8 @@ header img{
     right: 10px;
     font-size: 3em;
     color: grey;
+    padding: 20px 10px;
+    z-index: 999;
 }
 .task-fav.favorite {
   color: #FF8C1D;
