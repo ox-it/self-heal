@@ -15,12 +15,17 @@
 	    }); 
 	};
 	$.fn.addFavStatus = function(elements) {
+		var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
 		return this.each(function() {
 				var $this = $(this);
 				var taskElems = $this.find(elements);
 				$.each(taskElems, function (index, taskElem) {
 					var elemId = $(taskElem).attr('id');
-					$(taskElem).append( "<div class='task-fav' data-task-fav='"+ elemId +"'>&#9829;</div");
+					var classes = " task-fav ";
+					if (favoriteTasks.indexOf(elemId) >= 0) {
+						classes += "favorite ";
+					}
+					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'>&#9829;</div");
 					
 				})
 			}); 
@@ -114,7 +119,10 @@
 
 			var touch = e.originalEvent,
 				startX = touch.changedTouches[0].pageX;
-
+				if ($(touch.target).hasClass("task-fav")) {
+					e.preventDefault();
+					toggleTaskFavStatus($(touch.target));
+				}
 
 				linkHref = $(this).find('a').first().attr('href');
 				
@@ -325,6 +333,21 @@
 		}
 	};
 
+	var toggleTaskFavStatus = function (target) {
+		var taskFavId = target.data("taskFav");
+		var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
+		var indexOfFav = favoriteTasks.indexOf(taskFavId);
+		if (indexOfFav >= 0) {
+			target.removeClass("favorite");
+			favoriteTasks.splice(indexOfFav, 1);
+		} else {
+				favoriteTasks.splice(indexOfFav, 1);
+				target.addClass("favorite");
+			favoriteTasks.push(taskFavId);
+		}
+		localStorage.setItem("favoriteTasksArray", JSON.stringify(favoriteTasks));
+	};
+	
 
 	// Initialize the gallery
 	$('.tasks ' + filterClass).tasksSlider();
