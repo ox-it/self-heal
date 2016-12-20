@@ -339,10 +339,11 @@
 		var indexOfFav = favoriteTasks.indexOf(taskFavId);
 		if (indexOfFav >= 0) {
 			target.removeClass("favorite");
+			$("#"+ taskFavId +" .task-fav").removeClass("favorite");
 			favoriteTasks.splice(indexOfFav, 1);
 		} else {
-				favoriteTasks.splice(indexOfFav, 1);
-				target.addClass("favorite");
+			target.addClass("favorite");
+			$("#"+ taskFavId +" .task-fav").addClass("favorite");
 			favoriteTasks.push(taskFavId);
 		}
 		localStorage.setItem("favoriteTasksArray", JSON.stringify(favoriteTasks));
