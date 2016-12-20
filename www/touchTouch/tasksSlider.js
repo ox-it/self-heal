@@ -33,7 +33,7 @@
 	var overlay = $('<div id="taskOverlay">'),
 		filters = $('<div id="taskFilters" class="filterButtons">' + 
 						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
-						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Ongoing</span>' +
+						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Long term</span>' +
 		'</div>')
 		slider = $('<div id="taskSlider">'),
 		backbtn = $('<div id="gallery-back">'),
