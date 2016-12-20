@@ -341,7 +341,7 @@ header img{
 /* filter buttons */
 
 .filterButtons {
-    width: 50%;
+    width: 60%;
     border: 1px solid var(--main-color);
     margin-left: auto;
     margin-right: auto;
@@ -356,6 +356,17 @@ header img{
     z-index: 999;
     flex-grow: 1;
     text-align: center;
+}
+
+#ongoingTasksFilter {
+  border-left: 1px solid var(--main-color);
+  border-right: 1px solid var(--main-color);
+}
+
+#favoritesFilter {
+  font-size: 2em;
+  padding-top: 5px;
+  padding-bottom: 0px;
 }
 
 .filterButton-active {

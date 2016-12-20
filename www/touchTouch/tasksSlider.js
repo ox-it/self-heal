@@ -24,6 +24,7 @@
 					var classes = " task-fav ";
 					if (favoriteTasks.indexOf(elemId) >= 0) {
 						classes += "favorite ";
+						$(taskElem).addClass("favorite");
 					}
 					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'>&#9829;</div");
 					
@@ -39,6 +40,7 @@
 		filters = $('<div id="taskFilters" class="filterButtons">' + 
 						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
 						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Long term</span>' +
+						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
 		'</div>')
 		slider = $('<div id="taskSlider">'),
 		backbtn = $('<div id="gallery-back">'),
@@ -339,10 +341,12 @@
 		var indexOfFav = favoriteTasks.indexOf(taskFavId);
 		if (indexOfFav >= 0) {
 			target.removeClass("favorite");
+			$("#"+ taskFavId).removeClass("favorite");
 			$("#"+ taskFavId +" .task-fav").removeClass("favorite");
 			favoriteTasks.splice(indexOfFav, 1);
 		} else {
 			target.addClass("favorite");
+			$("#"+ taskFavId).addClass("favorite");
 			$("#"+ taskFavId +" .task-fav").addClass("favorite");
 			favoriteTasks.push(taskFavId);
 		}
