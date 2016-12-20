@@ -367,6 +367,7 @@ header img{
   font-size: 2em;
   padding-top: 5px;
   padding-bottom: 0px;
+  font-family: fantasy;
 }
 
 .filterButton-active {
@@ -382,6 +383,7 @@ header img{
     color: grey;
     padding: 20px 10px;
     z-index: 999;
+    font-family: fantasy;
 }
 .task-fav.favorite {
   color: #FF8C1D;
