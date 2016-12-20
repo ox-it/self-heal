@@ -362,3 +362,14 @@ header img{
     color: white;
     background-color:var(--main-color);
 }
+
+.task-fav {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    font-size: 3em;
+    color: grey;
+}
+.task-fav.favorite {
+  color: #FF8C1D;
+}

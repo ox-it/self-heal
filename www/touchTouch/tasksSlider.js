@@ -2,7 +2,6 @@
 (function(){
 	var filterClassAll = '.single-task';
 	var filterClass = '.single-task.immediate-task';
-	
 	$.fn.randomize = function(elements) {
 	    return this.each(function() {
 	      var $this = $(this);
@@ -15,7 +14,20 @@
 	        unsortedElems.eq(i).replaceWith(elems[i]);
 	    }); 
 	};
+	$.fn.addFavStatus = function(elements) {
+		return this.each(function() {
+				var $this = $(this);
+				var taskElems = $this.find(elements);
+				$.each(taskElems, function (index, taskElem) {
+					var elemId = $(taskElem).attr('id');
+					$(taskElem).append( "<div class='task-fav' data-task-fav='"+ elemId +"'>&#9829;</div");
+					
+				})
+			}); 
+	};
 	$('.tasks').randomize(filterClass);
+	$('.tasks').addFavStatus(filterClassAll);
+	
 	/* Private variables */
 
 	var overlay = $('<div id="taskOverlay">'),
