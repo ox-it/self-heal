@@ -346,7 +346,7 @@ header #header-icon-info {
 /* filter buttons */
 
 .filterButtons {
-    width: 50%;
+    width: 60%;
     border: 1px solid var(--main-color);
     margin-left: auto;
     margin-right: auto;
@@ -363,7 +363,33 @@ header #header-icon-info {
     text-align: center;
 }
 
+#ongoingTasksFilter {
+  border-left: 1px solid var(--main-color);
+  border-right: 1px solid var(--main-color);
+}
+
+#favoritesFilter {
+  font-size: 2em;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  font-family: fantasy;
+}
+
 .filterButton-active {
     color: white;
     background-color:var(--main-color);
+}
+
+.task-fav {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    font-size: 3em;
+    color: grey;
+    padding: 20px 10px;
+    z-index: 999;
+    font-family: fantasy;
+}
+.task-fav.favorite {
+  color: #FF8C1D;
 }

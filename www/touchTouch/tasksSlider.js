@@ -2,7 +2,6 @@
 (function(){
 	var filterClassAll = '.single-task';
 	var filterClass = '.single-task.immediate-task';
-	
 	$.fn.randomize = function(elements) {
 	    return this.each(function() {
 	      var $this = $(this);
@@ -15,13 +14,33 @@
 	        unsortedElems.eq(i).replaceWith(elems[i]);
 	    }); 
 	};
+	$.fn.addFavStatus = function(elements) {
+		var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
+		return this.each(function() {
+				var $this = $(this);
+				var taskElems = $this.find(elements);
+				$.each(taskElems, function (index, taskElem) {
+					var elemId = $(taskElem).attr('id');
+					var classes = " task-fav ";
+					if (favoriteTasks.indexOf(elemId) >= 0) {
+						classes += "favorite ";
+						$(taskElem).addClass("favorite");
+					}
+					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'>&#9829;</div");
+					
+				})
+			}); 
+	};
 	$('.tasks').randomize(filterClass);
+	$('.tasks').addFavStatus(filterClassAll);
+	
 	/* Private variables */
 
 	var overlay = $('<div id="taskOverlay">'),
 		filters = $('<div id="taskFilters" class="filterButtons">' + 
 						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
-						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Ongoing</span>' +
+						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Long term</span>' +
+						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
 		'</div>')
 		slider = $('<div id="taskSlider">'),
 		backbtn = $('<div id="gallery-back">'),
@@ -102,7 +121,10 @@
 
 			var touch = e.originalEvent,
 				startX = touch.changedTouches[0].pageX;
-
+				if ($(touch.target).hasClass("task-fav")) {
+					e.preventDefault();
+					toggleTaskFavStatus($(touch.target));
+				}
 
 				linkHref = $(this).find('a').first().attr('href');
 				
@@ -131,9 +153,9 @@
 			// highlighting on Android
 			return false;
 
-		}).on('touchend',function(){
+		}).on('touchend',function(ev){
 
-			if (movevar === false && linkHref !== undefined){
+			if (movevar === false && linkHref !== undefined && !$(ev.target).hasClass("task-fav")){
 				window.open(linkHref, "_system");
 			} 
 
@@ -313,6 +335,24 @@
 		}
 	};
 
+	var toggleTaskFavStatus = function (target) {
+		var taskFavId = target.data("taskFav");
+		var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
+		var indexOfFav = favoriteTasks.indexOf(taskFavId);
+		if (indexOfFav >= 0) {
+			target.removeClass("favorite");
+			$("#"+ taskFavId).removeClass("favorite");
+			$("#"+ taskFavId +" .task-fav").removeClass("favorite");
+			favoriteTasks.splice(indexOfFav, 1);
+		} else {
+			target.addClass("favorite");
+			$("#"+ taskFavId).addClass("favorite");
+			$("#"+ taskFavId +" .task-fav").addClass("favorite");
+			favoriteTasks.push(taskFavId);
+		}
+		localStorage.setItem("favoriteTasksArray", JSON.stringify(favoriteTasks));
+	};
+	
 
 	// Initialize the gallery
 	$('.tasks ' + filterClass).tasksSlider();
