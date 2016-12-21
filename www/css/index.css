@@ -352,15 +352,23 @@ header #header-icon-info {
     margin-right: auto;
     margin-top: 6em;
     display: flex;
-    
+}
+#imageFilters {
+    width: 15%;
 }
 
-.filterButton {
+.filterButton, .imageFilterButton {
     padding: 0.5em;
     font-size: 1.5em;
     z-index: 999;
     flex-grow: 1;
     text-align: center;
+}
+.imageFilterButton {
+    font-size: 2em;
+    font-family: fantasy;
+    padding-bottom: 0px;
+    padding-top: 5px;
 }
 
 #ongoingTasksFilter {
@@ -380,7 +388,7 @@ header #header-icon-info {
     background-color:var(--main-color);
 }
 
-.task-fav {
+.task-fav,  .image-fav {
     position: absolute;
     bottom: 20px;
     right: 10px;
@@ -390,6 +398,6 @@ header #header-icon-info {
     z-index: 999;
     font-family: fantasy;
 }
-.task-fav.favorite {
+.task-fav.favorite, .image-fav.favorite {
   color: #FF8C1D;
 }
