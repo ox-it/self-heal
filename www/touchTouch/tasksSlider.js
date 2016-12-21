@@ -1,5 +1,8 @@
 
 (function(){
+	var filterClassAll = '.single-task';
+	var filterClass = '.single-task.immediate-task';
+	
 	$.fn.randomize = function(elements) {
 	    return this.each(function() {
 	      var $this = $(this);
@@ -12,10 +15,14 @@
 	        unsortedElems.eq(i).replaceWith(elems[i]);
 	    }); 
 	};
-	$('.tasks').randomize('.single-task');
+	$('.tasks').randomize(filterClass);
 	/* Private variables */
 
 	var overlay = $('<div id="taskOverlay">'),
+		filters = $('<div id="taskFilters" class="filterButtons">' + 
+						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
+						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Ongoing</span>' +
+		'</div>')
 		slider = $('<div id="taskSlider">'),
 		backbtn = $('<div id="gallery-back">'),
 		prevTask = $('<a id="prevTask"></a>'),
@@ -32,10 +39,45 @@
 			allitems = this,
 			items = allitems;
 
+		function resetGallery() {
+			//re-initialise the slider
+			items = $(".tasks").find(filterClass);
+			index = items.index($(".tasks").find(filterClass).first());
+			slider.empty();
+			placeholders = $([]);
+			items.each(function () {
+				placeholders = placeholders.add($('<div class="placeholder">'));
+			});
+			slider.append(placeholders);
+			
+			showOverlay(index);
+			offsetSlider(index);
+			showImage(index);
+			preload(index+1);
+			preload(index-1);
+		}
+
 		// Appending the markup to the page
 		overlay.hide().appendTo('body');
+		filters.appendTo(overlay);
 		slider.appendTo(overlay);
 		backbtn.appendTo(overlay);
+
+		//filter the list of tasks to just those with the given classname in their dom element
+		var filterTasks = function (className) {
+			$('.tasks').randomize(filterClass);
+		}
+		
+		//init filters
+		$('.filterButton').click(function (ev) {
+			//apply class
+			$('.filterButton').removeClass('filterButton-active');
+			$(ev.target).addClass('filterButton-active');
+			var classToShow = ev.target.dataset['targetclassname'];
+			filterClass = '.single-task.' + classToShow;
+			
+			resetGallery();
+		});
 
 		// Creating a placeholder for each image
 		items.each(function(){
@@ -45,8 +87,10 @@
 		// Hide the gallery if the background is touched / clicked
 		slider.append(placeholders).on('click',function(e){
 
-			if(!$(e.target).is('.single-task')){
-				hideOverlay();
+			if(!$(e.target).is(filterClass)){
+				// hideOverlay();
+				// Disabling this for now so that filter buttons etc can work.
+				// Users can still use the back arrow to go back.
 			}
 		});
 
@@ -54,7 +98,7 @@
 		var linkHref = undefined;
 		// Listen for touch events on the body and check if they
 		// originated in #taskSlider img - the images in the slider.
-		$('body').on('touchstart', '#taskSlider .single-task', function(e){
+		$('body').on('touchstart', '#taskSlider ' + filterClassAll, function(e){
 
 			var touch = e.originalEvent,
 				startX = touch.changedTouches[0].pageX;
@@ -102,17 +146,17 @@
 		// Listening for clicks on the thumbnails
 		$("#icon-top-right").on('click', function(e){
 
-			$('.tasks').randomize('.single-task');
+			$('.tasks').randomize(filterClass);
 
-			var $this = $(".tasks").find('.single-task').first(),
-				selectorType;
+			var $this = $(".tasks").find(filterClass).first();
 			//These statements kept seperate in case elements have data-gallery on both
 			//items and ancestor. Ancestor will always win because of above statments.
-			items = $(".tasks").find('.single-task');
+			items = $(".tasks").find(filterClass);
 
 			// Find the position of this image
 			// in the collection
-			index = items.index($(".tasks").find('.single-task').first());
+			index = items.index($(".tasks").find(filterClass).first());
+
 			showOverlay(index);
 			showImage(index);
 
@@ -223,12 +267,12 @@
 		function showImage(index){
 
 			// If the index is outside the bonds of the array
-			if(index < 0 || index >= $(".tasks").find('.single-task').length){
+			if(index < 0 || index >= $(".tasks").find(filterClass).length){
 				return false;
 			}
 
 
-			var aaa = $(".tasks").find('.single-task').eq(index).clone();
+			var aaa = $(".tasks").find(filterClass).eq(index).clone();
 			placeholders.eq(index).html(aaa);
 		}
 
@@ -271,5 +315,5 @@
 
 
 	// Initialize the gallery
-	$('.tasks .single-task').tasksSlider();
+	$('.tasks ' + filterClass).tasksSlider();
 })(jQuery);
