@@ -3,8 +3,14 @@ $(function(){
 		    $('#contacts').hide();
 		    $('#tasks').hide();
 		    $('#web').hide();
-	    	$('#info').hide();
 		    $('#loader-holder').hide();
+				if (typeof(Storage) !== "undefined") {
+					if (localStorage.getItem("firstTimeUse") == "false") {
+						$('#info').hide();
+					} else {
+						localStorage.setItem("firstTimeUse", "false");
+					}
+				}
 		});
 
 
@@ -12,8 +18,14 @@ $(function(){
 	        $('#home').hide();
 	        $('#tasks').show();
 	    })
-	    $('#icon-bottom-right').click(function(){
-	        $('#home').hide();
+			$('#header-icon-info').click(function(){
+				if ($("#info").is(":visible")) {
+	        $('#info').hide();
+				} else {
+	        $('#info').show();
+				}
+	    })
+			$('#icon-bottom-right').click(function(){
 	        $('#info').show();
 	    })
 	    $('#info').click(function(){
