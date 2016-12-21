@@ -247,17 +247,18 @@ header #header-icon-info {
 
 #tasks-button-now {
   background-color: var(--main-color);
-  color: black;
+  color: white;
+  font-weight: bold;
 }
 
 #tasks-button-lt {
-  background-color: white;
-  color: var(--main-color);
+  background-color: var(--main-color);
+  color: white;
 }
 
-.home-call-button {
-    background-color: white;
-    color: black;
+a.home-call-button, a.home-call-button:visited{
+    background-color: #fafafa;
+    color: #888888;
 }
 
 .space {
