@@ -68,10 +68,7 @@
 				items = $(".thumbs").find(filterClass);
 				index = items.index($(".thumbs").find(filterClass).first());
 				slider.empty();
-				placeholders = $([]);
-				items.each(function () {
-					placeholders = placeholders.add($('<div class="placeholder">'));
-				});
+				placeholders = $( ('<div class="placeholder"></div>').repeat(items.length) );
 				slider.append(placeholders);
 				
 				showOverlay(index);
@@ -87,9 +84,7 @@
 		slider.appendTo(overlay);
 
 		// Creating a placeholder for each image
-		items.each(function(){
-			placeholders = placeholders.add($('<div class="placeholder">'));
-		});
+		placeholders = $( ('<div class="placeholder"></div>').repeat(items.length) );
 
 		// Hide the gallery if the background is touched / clicked
 		slider.append(placeholders).on('click',function(e){
