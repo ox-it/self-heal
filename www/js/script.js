@@ -27,8 +27,6 @@ $(function(){
 						navigator.geolocation.getCurrentPosition(
 							function (position) {
 								//on Success	
-								console.log('Latitude:',position.coords.latitude);
-								console.log('Longitude:',position.coords.longitude);
 								
 								var $contacts = $('#contacts .content-holder');
 								var $contactItems = $contacts.children('.acc-item');
