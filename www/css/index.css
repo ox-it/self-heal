@@ -347,15 +347,23 @@ header img{
     margin-right: auto;
     margin-top: 6em;
     display: flex;
-    
+}
+#imageFilters {
+    width: 15%;
 }
 
-.filterButton {
+.filterButton, .imageFilterButton {
     padding: 0.5em;
     font-size: 1.5em;
     z-index: 999;
     flex-grow: 1;
     text-align: center;
+}
+.imageFilterButton {
+    font-size: 2em;
+    font-family: fantasy;
+    padding-bottom: 0px;
+    padding-top: 5px;
 }
 
 #ongoingTasksFilter {
