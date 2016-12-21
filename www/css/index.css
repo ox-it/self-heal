@@ -234,13 +234,11 @@ header #header-icon-info {
 
 .home-task-button, .home-call-button {
     position: relative;
-    width: 70%;
+    width: 80%;
     left: 10%;
     margin: 10px 0;
     padding: 20px 0;
-    padding-left: 10%;
     font-size: 2em;
-    text-align: left;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     text-decoration: none;
