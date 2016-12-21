@@ -86,10 +86,7 @@
 		// Creating a placeholder for each image
 		placeholders = $( ('<div class="placeholder"></div>').repeat(items.length) );
 
-		// Hide the gallery if the background is touched / clicked
-		slider.append(placeholders).on('click',function(e){
-
-		});
+		slider.append(placeholders);
 
 		$('.imageFilterButton').click(function (ev) {
 			if ( $('#imageFilters .imageFilterButton').hasClass('filterButton-active') ) {
