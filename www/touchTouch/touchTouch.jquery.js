@@ -281,8 +281,6 @@
 		function showImage(index){
 
 			// If the index is outside the bonds of the array
-			// x=$(".image-fav:not(.favorite)").closest( ".placeholder" ).filter(":hidden");
-			// console.log("x,x",x);
 			if(index < 0 || index >= $(".thumbs").find(filterClass).length){
 				
 				return false;
