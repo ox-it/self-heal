@@ -153,9 +153,9 @@
 			// highlighting on Android
 			return false;
 
-		}).on('touchend',function(){
+		}).on('touchend',function(ev){
 
-			if (movevar === false && linkHref !== undefined){
+			if (movevar === false && linkHref !== undefined && !$(ev.target).hasClass("task-fav")){
 				window.open(linkHref, "_system");
 			} 
 
