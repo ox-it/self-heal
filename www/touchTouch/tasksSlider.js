@@ -161,7 +161,16 @@
 		});
 
 		// Listening for clicks on the thumbnails
-		$("#icon-top-right").on('click', function(e){
+		$("#tasks-button-now, #tasks-button-lt").on('click', function(e){
+			$('.filterButton').removeClass('filterButton-active');
+			if ($(e.target).hasClass("do-now")) {
+				$("#nowTasksFilter").addClass('filterButton-active');
+				filterClass = ".single-task.immediate-task";
+			}
+			if ($(e.target).hasClass("do-long-term")) {
+				$("#ongoingTasksFilter").addClass('filterButton-active');
+				filterClass = ".single-task.ongoing-task";
+			}
 
 			$('.tasks').randomize(filterClass);
 

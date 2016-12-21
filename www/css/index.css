@@ -237,7 +237,7 @@ header #header-icon-info {
     /*padding: 5px;*/
 }
 
-.home-button {
+.home-task-button {
     position: relative;
     width: 70%;
     left: 10%;
@@ -259,11 +259,6 @@ header #header-icon-info {
     display: block;
     width: 100%;
     text-align: center;
-}
-#icon-top-right{
-  /*float: right;*/
-  background-image: url("../img/form-icon.png"); 
-  display: none;
 }
 
 #icon-bottom-left{
@@ -382,7 +377,7 @@ header #header-icon-info {
 /* filter buttons */
 
 .filterButtons {
-    width: 60%;
+    width: 65%;
     border: 1px solid var(--main-color);
     margin-left: auto;
     margin-right: auto;
