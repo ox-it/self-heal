@@ -382,24 +382,58 @@ header #header-icon-info {
 /* filter buttons */
 
 .filterButtons {
-    width: 50%;
+    width: 60%;
     border: 1px solid var(--main-color);
     margin-left: auto;
     margin-right: auto;
     margin-top: 6em;
     display: flex;
-    
+}
+#imageFilters {
+    width: 15%;
 }
 
-.filterButton {
+.filterButton, .imageFilterButton {
     padding: 0.5em;
     font-size: 1.5em;
     z-index: 999;
     flex-grow: 1;
     text-align: center;
 }
+.imageFilterButton {
+    font-size: 2em;
+    font-family: fantasy;
+    padding-bottom: 0px;
+    padding-top: 5px;
+}
+
+#ongoingTasksFilter {
+  border-left: 1px solid var(--main-color);
+  border-right: 1px solid var(--main-color);
+}
+
+#favoritesFilter {
+  font-size: 2em;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  font-family: fantasy;
+}
 
 .filterButton-active {
     color: white;
     background-color:var(--main-color);
+}
+
+.task-fav,  .image-fav {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    font-size: 3em;
+    color: grey;
+    padding: 20px 10px;
+    z-index: 999;
+    font-family: fantasy;
+}
+.task-fav.favorite, .image-fav.favorite {
+  color: #FF8C1D;
 }
