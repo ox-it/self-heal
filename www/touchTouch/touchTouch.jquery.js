@@ -8,7 +8,8 @@
 
 
 (function(){
-
+	var filterClassAll = '.single-image';
+	var filterClass = '.single-image';
 	$.fn.randomize = function(elements) {
 	    return this.each(function() {
 	      var $this = $(this);
@@ -21,10 +22,31 @@
 	        unsortedElems.eq(i).replaceWith(elems[i]);
 	    }); 
 	};
+	$.fn.addFavStatus = function(elements) {
+		var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
+		return this.each(function() {
+				var $this = $(this);
+				var imageElems = $this.find(elements);
+				$.each(imageElems, function (index, imageElem) {
+					var elemId = $(imageElem).attr('id');
+					var classes = " image-fav ";
+					// if (favoriteImages.indexOf(elemId) >= 0) {
+					// 	classes += "favorite ";
+					// }
+					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'>&#9829;</div");
+					
+				})
+		}); 
+	};
+
 	$('.thumbs').randomize('a');
+	$('.thumbs').addFavStatus(filterClassAll);
 	/* Private variables */
 
 	var overlay = $('<div id="galleryOverlay">'),
+		filters = $('<div id="imageFilters" class="filterButtons">' + 
+						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
+		'</div>'),
 		slider = $('<div id="gallerySlider">'),
 		prevArrow = $('<a id="prevArrow"></a>'),
 		nextArrow = $('<a id="nextArrow"></a>'),
@@ -42,6 +64,7 @@
 
 		// Appending the markup to the page
 		overlay.hide().appendTo('body');
+		filters.appendTo(overlay);
 		slider.appendTo(overlay);
 
 		// Creating a placeholder for each image
@@ -52,15 +75,34 @@
 		// Hide the gallery if the background is touched / clicked
 		slider.append(placeholders).on('click',function(e){
 
-			if(!$(e.target).is('img')){
+			if(!($(e.target).is('img') || $(e.target).hasClass('image-fav'))){
 				hideOverlay();
 			}
+		});
+
+		$('.filterButton').click(function (ev) {
+			if ($('.filterButton').hasClass("filterButton-active")) {
+				$('.filterButton').removeClass('filterButton-active');
+				$(".image-fav:not(.favorite)").closest( ".placeholder" ).show();
+				// index = (find the new index in all placeholders)
+			} else {
+				$('.filterButton').addClass('filterButton-active');
+				$(".image-fav:not(.favorite)").closest( ".placeholder" ).hide();
+
+
+
+			}
+
+			// $(ev.target).addClass('filterButton-active');
+			// var classToShow = ev.target.dataset['targetclassname'];
+			// filterClass = '.single-task.' + classToShow;
+			// 
+			// resetGallery();
 		});
 
 		// Listen for touch events on the body and check if they
 		// originated in #gallerySlider img - the images in the slider.
 		$('body').on('touchstart', '#gallerySlider img', function(e){
-
 			var touch = e.originalEvent,
 				startX = touch.changedTouches[0].pageX;
 
@@ -233,7 +275,10 @@
 		function showImage(index){
 
 			// If the index is outside the bonds of the array
+			// x=$(".image-fav:not(.favorite)").closest( ".placeholder" ).filter(":hidden");
+			// console.log("x,x",x);
 			if(index < 0 || index >= $(".thumbs").find('a').length){
+				
 				return false;
 			}
 
@@ -241,7 +286,6 @@
 
 			// Call the load function with the href attribute of the item
 			loadImage($(".thumbs").find('a').eq(index).attr('href'), function(){
-
 				var holder = document.createElement('div');
 				$(holder).addClass('placeholder-image');
 				var caption = document.createElement('div');
@@ -250,6 +294,19 @@
 				$(caption).addClass("img-caption");
 				$(holder).append(caption);
 				$(holder).append(this);
+				var favElement = $(".thumbs").find('a').eq(index).find(".image-fav");
+				var favClone = favElement.clone()
+				var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
+				var indexOfFav = favoriteImages.indexOf( $(".thumbs").find('a').eq(index).attr("id") );
+				if (indexOfFav >= 0) {
+					favClone.addClass("favorite");
+				}
+				$(holder).append(favClone);
+				favClone.off("click");
+				favClone.on("click", function (ev) {
+					toggleImageFavStatus($(ev.target));
+				});
+
 				placeholders.eq(index).html(holder);
 			});
 		}
@@ -303,7 +360,23 @@
 		}
 	};
 
+	var toggleImageFavStatus = function (target) {
+		console.log(target);
+		var imageFavId = target.data("image-fav");
+		var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
+		var indexOfFav = favoriteImages.indexOf(imageFavId);
+		if (indexOfFav >= 0) {
+			target.removeClass("favorite");
+			$("#"+ imageFavId).removeClass("favorite");
+			// $("#"+ imageFavId +" .image-fav").removeClass("favorite");
+			favoriteImages.splice(indexOfFav, 1);
+		} else {
+			target.addClass("favorite");
+			$("#"+ imageFavId).addClass("favorite");
+			// $("#"+ imageFavId +" .image-fav").addClass("favorite");
+			favoriteImages.push(imageFavId);
+		}
+		localStorage.setItem("favoriteImagesArray", JSON.stringify(favoriteImages));
+	};
 
-	// Initialize the gallery
-	$('.thumbs a').touchTouch();
 })(jQuery);

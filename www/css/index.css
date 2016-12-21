@@ -375,7 +375,7 @@ header img{
     background-color:var(--main-color);
 }
 
-.task-fav {
+.task-fav,  .image-fav {
     position: absolute;
     bottom: 20px;
     right: 10px;
@@ -385,6 +385,6 @@ header img{
     z-index: 999;
     font-family: fantasy;
 }
-.task-fav.favorite {
+.task-fav.favorite, .image-fav.favorite {
   color: #FF8C1D;
 }
