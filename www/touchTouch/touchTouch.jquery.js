@@ -89,9 +89,6 @@
 		// Hide the gallery if the background is touched / clicked
 		slider.append(placeholders).on('click',function(e){
 
-			if(!($(e.target).is('img') || $(e.target).hasClass('image-fav'))){
-				hideOverlay();
-			}
 		});
 
 		$('.imageFilterButton').click(function (ev) {
@@ -144,7 +141,7 @@
 
 		// Listening for clicks on the thumbnails
 		$("#thumbs-button").on('click', function(e){
-
+			$('#galleryOverlay').show();
 			$('.thumbs').randomize('a');
 
 			var $this = $(".thumbs").find(filterClass).first(),

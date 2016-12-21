@@ -43,7 +43,6 @@
 						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
 		'</div>')
 		slider = $('<div id="taskSlider">'),
-		backbtn = $('<div id="gallery-back">'),
 		prevTask = $('<a id="prevTask"></a>'),
 		nextTask = $('<a id="nextTask"></a>'),
 		overlayVisible = false;
@@ -77,7 +76,6 @@
 		overlay.hide().appendTo('body');
 		filters.appendTo(overlay);
 		slider.appendTo(overlay);
-		backbtn.appendTo(overlay);
 
 		//filter the list of tasks to just those with the given classname in their dom element
 		var filterTasks = function (className) {
@@ -162,6 +160,7 @@
 
 		// Listening for clicks on the thumbnails
 		$("#tasks-button-now, #tasks-button-lt").on('click', function(e){
+			$('#taskOverlay').show();
 			$('.filterButton').removeClass('filterButton-active');
 			if ($(e.target).hasClass("do-now")) {
 				$("#nowTasksFilter").addClass('filterButton-active');
@@ -209,15 +208,6 @@
 				showNext();
 			});
 		}
-
-		$('#gallery-back').click(function(){
-			console.log("Should go back")
-			movevar = false;
-			linkHref = undefined;
-			slider.off('touchmove');
-				hideOverlay();
-		})
-
 
 		// Listen for arrow keys
 		$(window).bind('keydown', function(e){

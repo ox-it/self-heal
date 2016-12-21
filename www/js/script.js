@@ -15,8 +15,18 @@ $(function(){
 
 
 	    $('#info-contact').click(function(){
-	        $('#home').hide();
 	        $('#tasks').show();
+	    })
+			$('#header-icon-home').click(function(){
+				console.log("tst home");
+				$('#info').hide();
+				$('#info').hide();
+				$('#tasks').hide();
+				$('#web').hide();
+				$('#contacts').hide();
+				$('#taskOverlay').hide();
+				$('#galleryOverlay').hide();
+				
 	    })
 			$('#header-icon-info').click(function(){
 				if ($("#info").is(":visible")) {
@@ -26,11 +36,9 @@ $(function(){
 				}
 	    })
 	    $('#info').click(function(){
-	        $('#home').show();
 	        $('#info').hide();
 	    })
 	    $('#phone-contact').click(function(){
-	        $('#home').hide();
 	        $('#contacts').show();
 					if (navigator && navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(
@@ -64,15 +72,8 @@ $(function(){
 					}
 	    })
 	    $('#web-contact').click(function(){
-	        $('#home').hide();
 	        $('#web').show();
 	    })
-	    $('.home-button').click(function(){
-	        $(this).parent().parent().hide();
-	        $('#home').show();
-	    })
-
-
 	    
 		$( "#menu-icon" ).click(function() {
 	  		var x = document.getElementById("myTopnav");
