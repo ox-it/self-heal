@@ -19,7 +19,7 @@
 
 :root {
   --main-color: #FF8C1D;
-  --main-bg-color: #E4E4E4;
+  --main-bg-color: #F0F0F0;
 }
 
 * {
@@ -195,13 +195,18 @@ header #header-icon-info {
 -----------------------------*/
 
 #home{
-  position: fixed;
+  /*position: fixed;
   top: 50%;
   left: 50%;
   width: 250px;
   height: 250px;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  height: 85%;
+  text-align: center;
 }
 
 #index-header img{
@@ -224,48 +229,79 @@ header #header-icon-info {
 .info-icon{
 }
 
-#icon-top-left{
-  float: left;
-  position: absolute;
-  background-image: url("../img/picture-icon.png"); 
+.home-page-text {
+    color: black;
+    font-size: 2em;
+    text-decoration: none;
+    text-align: center;
+    /*padding: 5px;*/
 }
 
+.home-button {
+    position: relative;
+    width: 70%;
+    left: 10%;
+    margin: 10px 0;
+    background-color: var(--main-color);
+    padding: 20px 0;
+    padding-left: 10%;
+    font-size: 2em;
+    color: white;
+    text-align: left;
+}
+
+.space {
+    height: 7%;
+}
+
+#icon-top-left {
+    background-image: url(../img/picture-icon.png);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
 #icon-top-right{
-  float: right;
+  /*float: right;*/
   background-image: url("../img/form-icon.png"); 
+  display: none;
 }
 
 #icon-bottom-left{
-  float: left;
-  position: absolute;
-  bottom: 0;
+  /*float: left;*/
+  /*position: absolute;*/
+  /*bottom: 0;*/
   background-image: url("../img/contacts-icon.png"); 
-  z-index: 5;
+  /*z-index: 5;*/
+  display: none;
 }
 
 #icon-bottom-right{
-  float: right;
+  /*float: right;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 0;*/
+  display: none;
   background-image: url("../img/info.png"); 
   background-size: 64px 64px;
 }
 
 .contact-icons{
-  float: left;
-  position: absolute;
+  /*float: left;*/
+  /*position: absolute;
   top: 187px;
-  bottom: 0;
+  bottom: 0;*/
   border-radius: 50%;
   width: 63px;
   height: 63px;
-  z-index: 4;
+  display: inline-block;
+  margin: 0 5%;
+  /*z-index: 4;*/
 }
 
 #phone-contact{
   background-color: rgb(126, 155, 167);
   background-image: url("../img/phone.png");
+  
 }
 
 #web-contact{
