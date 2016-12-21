@@ -30,9 +30,10 @@
 				$.each(imageElems, function (index, imageElem) {
 					var elemId = $(imageElem).attr('id');
 					var classes = " image-fav ";
-					// if (favoriteImages.indexOf(elemId) >= 0) {
-					// 	classes += "favorite ";
-					// }
+					
+					if (favoriteImages.indexOf(elemId) >= 0) {
+						$(imageElem).addClass("favorite");
+					}
 					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'>&#9829;</div");
 					
 				})
@@ -45,7 +46,7 @@
 
 	var overlay = $('<div id="galleryOverlay">'),
 		filters = $('<div id="imageFilters" class="filterButtons">' + 
-						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
+						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton">&#9829;</span>' +
 		'</div>'),
 		slider = $('<div id="gallerySlider">'),
 		prevArrow = $('<a id="prevArrow"></a>'),
@@ -61,6 +62,24 @@
 			index = 0,
 			allitems = this,
 			items = allitems;
+
+			function resetGallery() {
+				//re-initialise the slider
+				items = $(".thumbs").find(filterClass);
+				index = items.index($(".thumbs").find(filterClass).first());
+				slider.empty();
+				placeholders = $([]);
+				items.each(function () {
+					placeholders = placeholders.add($('<div class="placeholder">'));
+				});
+				slider.append(placeholders);
+				
+				showOverlay(index);
+				offsetSlider(index);
+				showImage(index);
+				preload(index+1);
+				preload(index-1);
+			}
 
 		// Appending the markup to the page
 		overlay.hide().appendTo('body');
@@ -80,24 +99,16 @@
 			}
 		});
 
-		$('.filterButton').click(function (ev) {
-			if ($('.filterButton').hasClass("filterButton-active")) {
-				$('.filterButton').removeClass('filterButton-active');
-				$(".image-fav:not(.favorite)").closest( ".placeholder" ).show();
-				// index = (find the new index in all placeholders)
+		$('.imageFilterButton').click(function (ev) {
+			if ( $('#imageFilters .imageFilterButton').hasClass('filterButton-active') ) {
+				$('#imageFilters .imageFilterButton').removeClass('filterButton-active');
+				var classToShow = "";
 			} else {
-				$('.filterButton').addClass('filterButton-active');
-				$(".image-fav:not(.favorite)").closest( ".placeholder" ).hide();
-
-
-
+				$('#imageFilters .imageFilterButton').addClass('filterButton-active');
+				var classToShow = ".favorite";
 			}
-
-			// $(ev.target).addClass('filterButton-active');
-			// var classToShow = ev.target.dataset['targetclassname'];
-			// filterClass = '.single-task.' + classToShow;
-			// 
-			// resetGallery();
+			filterClass = '.single-image' + classToShow;
+			resetGallery();
 		});
 
 		// Listen for touch events on the body and check if they
@@ -141,7 +152,7 @@
 
 			$('.thumbs').randomize('a');
 
-			var $this = $(".thumbs").find('a').first(),
+			var $this = $(".thumbs").find(filterClass).first(),
 				galleryName,
 				selectorType,
 				$closestGallery = $this.parent().closest('[data-gallery]');
@@ -165,11 +176,11 @@
 
 			//These statements kept seperate in case elements have data-gallery on both
 			//items and ancestor. Ancestor will always win because of above statments.
-			items = $(".thumbs").find('a');
+			items = $(".thumbs").find(filterClass);
 
 			// Find the position of this image
 			// in the collection
-			index = items.index($(".thumbs").find('a').first());
+			index = items.index($(".thumbs").find(filterClass).first());
 			showOverlay(index);
 			showImage(index);
 
@@ -277,15 +288,15 @@
 			// If the index is outside the bonds of the array
 			// x=$(".image-fav:not(.favorite)").closest( ".placeholder" ).filter(":hidden");
 			// console.log("x,x",x);
-			if(index < 0 || index >= $(".thumbs").find('a').length){
+			if(index < 0 || index >= $(".thumbs").find(filterClass).length){
 				
 				return false;
 			}
 
-			var imageTitle = $(".thumbs").find('a').eq(index).attr('title');
+			var imageTitle = $(".thumbs").find(filterClass).eq(index).attr('title');
 
 			// Call the load function with the href attribute of the item
-			loadImage($(".thumbs").find('a').eq(index).attr('href'), function(){
+			loadImage($(".thumbs").find(filterClass).eq(index).attr('href'), function(){
 				var holder = document.createElement('div');
 				$(holder).addClass('placeholder-image');
 				var caption = document.createElement('div');
@@ -294,10 +305,10 @@
 				$(caption).addClass("img-caption");
 				$(holder).append(caption);
 				$(holder).append(this);
-				var favElement = $(".thumbs").find('a').eq(index).find(".image-fav");
+				var favElement = $(".thumbs").find(filterClass).eq(index).find(".image-fav");
 				var favClone = favElement.clone()
 				var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
-				var indexOfFav = favoriteImages.indexOf( $(".thumbs").find('a').eq(index).attr("id") );
+				var indexOfFav = favoriteImages.indexOf( $(".thumbs").find(filterClass).eq(index).attr("id") );
 				if (indexOfFav >= 0) {
 					favClone.addClass("favorite");
 				}
@@ -368,12 +379,10 @@
 		if (indexOfFav >= 0) {
 			target.removeClass("favorite");
 			$("#"+ imageFavId).removeClass("favorite");
-			// $("#"+ imageFavId +" .image-fav").removeClass("favorite");
 			favoriteImages.splice(indexOfFav, 1);
 		} else {
 			target.addClass("favorite");
 			$("#"+ imageFavId).addClass("favorite");
-			// $("#"+ imageFavId +" .image-fav").addClass("favorite");
 			favoriteImages.push(imageFavId);
 		}
 		localStorage.setItem("favoriteImagesArray", JSON.stringify(favoriteImages));
