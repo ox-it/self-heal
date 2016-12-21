@@ -25,9 +25,6 @@ $(function(){
 	        $('#info').show();
 				}
 	    })
-			$('#icon-bottom-right').click(function(){
-	        $('#info').show();
-	    })
 	    $('#info').click(function(){
 	        $('#home').show();
 	        $('#info').hide();
@@ -71,7 +68,6 @@ $(function(){
 	        $('#web').show();
 	    })
 	    $('.home-button').click(function(){
-            hideIcons();
 	        $(this).parent().parent().hide();
 	        $('#home').show();
 	    })
@@ -103,44 +99,6 @@ $(function(){
 	        unsortedElems.eq(i).replaceWith(elems[i]);
 	    }); 
 	};
-
-	$("#icon-bottom-left").click(function(){
-
-        if ($("#icon-bottom-left").hasClass("moved")){
-            hideIcons();
-		} else {
-			showIcons();
-	    }
-
-    });
-
-	function hideIcons(){
-		$("#web-contact").animate({
-		    left: '-=100px'
-		});
-		$("#info-contact").animate({
-		    left: '-=100px',
-		    top: '+=100px',
-		});
-		$("#phone-contact").animate({
-		    top: '+=100px'
-		});
-        $("#icon-bottom-left").toggleClass("moved");
-	}
-
-	function showIcons(){
-        $("#web-contact").animate({
-            left: '+=100px'
-        });
-        $("#info-contact").animate({
-            left: '+=100px',
-            top: '-=100px',
-        });
-        $("#phone-contact").animate({
-            top: '-=100px'
-        });
-        $("#icon-bottom-left").toggleClass("moved");
-	}
 
 	function mapDistance(lat1, lon1, lat2, lon2){
 		var R = 6371e3; // metres

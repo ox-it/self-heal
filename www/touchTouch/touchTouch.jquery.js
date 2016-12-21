@@ -143,7 +143,7 @@
 		});
 
 		// Listening for clicks on the thumbnails
-		$("#icon-top-left").on('click', function(e){
+		$("#thumbs-button").on('click', function(e){
 
 			$('.thumbs').randomize('a');
 

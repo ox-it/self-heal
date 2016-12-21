@@ -248,36 +248,18 @@ header #header-icon-info {
     font-size: 2em;
     color: white;
     text-align: left;
-}
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);}
 
 .space {
     height: 7%;
 }
 
-#icon-top-left {
+#thumbs-button {
     background-image: url(../img/picture-icon.png);
     display: block;
     width: 100%;
     text-align: center;
-}
-
-#icon-bottom-left{
-  /*float: left;*/
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  background-image: url("../img/contacts-icon.png"); 
-  /*z-index: 5;*/
-  display: none;
-}
-
-#icon-bottom-right{
-  /*float: right;
-  position: absolute;
-  bottom: 0;
-  right: 0;*/
-  display: none;
-  background-image: url("../img/info.png"); 
-  background-size: 64px 64px;
 }
 
 .contact-icons{
@@ -394,6 +376,7 @@ header #header-icon-info {
     z-index: 999;
     flex-grow: 1;
     text-align: center;
+    background-color: white;
 }
 .imageFilterButton {
     font-size: 2em;
