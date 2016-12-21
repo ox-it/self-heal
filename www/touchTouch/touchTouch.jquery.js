@@ -237,6 +237,9 @@
 
 			// Raise the visible flag
 			overlayVisible = true;
+			console.log("tstststs");
+			$("#gallerySlider").css( {"top": $("#imageFilters").outerHeight(true)+20} );
+			$("#gallerySlider").height($("#galleryOverlay").outerHeight(true) - 25 - $("#imageFilters").outerHeight(true) - $("#index-header").outerHeight(true));
 		}
 
 		function hideOverlay(){
@@ -308,6 +311,7 @@
 				});
 
 				placeholders.eq(index).html(holder);
+				$(".placeholder-image").height($("#galleryOverlay").outerHeight(true) - 25 - $("#imageFilters").outerHeight(true) - $("#index-header").outerHeight(true));
 			});
 		}
 
