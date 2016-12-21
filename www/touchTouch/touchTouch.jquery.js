@@ -79,6 +79,7 @@
 				showImage(index);
 				preload(index+1);
 				preload(index-1);
+				$("#loader-holder").hide();
 			}
 
 		// Appending the markup to the page
@@ -101,6 +102,7 @@
 
 		$('.imageFilterButton').click(function (ev) {
 			if ( $('#imageFilters .imageFilterButton').hasClass('filterButton-active') ) {
+				$("#loader-holder").css({"background-color": "transparent", "z-index": "10000000"}).show();
 				$('#imageFilters .imageFilterButton').removeClass('filterButton-active');
 				var classToShow = "";
 			} else {
@@ -108,7 +110,8 @@
 				var classToShow = ".favorite";
 			}
 			filterClass = '.single-image' + classToShow;
-			resetGallery();
+			
+			setTimeout(function(){resetGallery();}, 50);
 		});
 
 		// Listen for touch events on the body and check if they
