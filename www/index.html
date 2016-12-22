@@ -37,7 +37,7 @@
     * Create your own at http://cspisawesome.com
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
-
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="touchTouch/touchTouch.css" />
     <link rel="stylesheet" type="text/css" href="touchTouch/taskSlider.css" />
@@ -53,14 +53,24 @@
 
     <div id="info" class="pages">
         <div id="info-text">
-            This App is to help you overcome and reduce urges to self-harm. <br>
-            Click this for motivational, funny or poignant images to change your perspective. <br>
-            <img src="img/picture-icon.png" width="30px" height="30px"><br>
-            We have a large selection of distraction techniques for crisis aversion under this icon. <br>
-            <img src="img/form-icon.png" width="30px" height="30px"><br>
-            If you need more support, from websites, phone numbers, to other Apps or more ideas about how to manage your self-harm, click this button and then choose the relevant symbol. <br>
-            <img src="img/contacts-icon.png" width="30px" height="30px"><br>
-            You will soon be able to favourite images and tasks to find them more easily. <br>
+            <div class="info-title">This App is to help you overcome and reduce urges to self-harm.</div> <br>
+            <i class="fa fa-picture-o" aria-hidden="true"></i>Click this for motivational, funny or poignant images to change your perspective. <br>
+            <br>
+            <div class="info-task-buttons">
+              <div class="info-home-task-button">Now</div>
+              <div class="info-home-task-button">Longer term</div>
+            </div>
+            We have a large selection of distraction techniques for crisis aversion under these buttons. <br>
+            <br>
+            <div class="info-task-buttons">
+              <span class="info-contact-icons"><i class="fa fa-phone" aria-hidden="true"></i></span>
+              <span class="info-contact-icons"><i class="fa fa-link" aria-hidden="true"></i></span>
+              <span class="info-contact-icons"><i class="fa fa-book" aria-hidden="true"></i></span>
+            </div>
+            If you need more support, from websites, phone numbers, to other Apps or more ideas about how to manage your self-harm, choose the relevant symbol. <br>
+            <br>
+            <i class="fa fa-heart" aria-hidden="true"></i>Click this to favourite images and tasks to find them more easily. <br>
+            <br>
             Please send us your feedback via our website, Facebook or on the App Store. <br> <br>
 
             Click anywhere to return to the app!
@@ -68,22 +78,26 @@
     </div>
 
     <header id="index-header">
+        <div id="header-icon-home"><i class="fa fa-home" aria-hidden="true"></i></div>
         <img src="img/logo.png" alt="self harm"/>
-        <div id="header-icon-info"><img src="img/info.png" alt="info"/></div>
+        <div id="header-icon-info"><i class="fa fa-info-circle" aria-hidden="true"></i></div>
     </header>
 
     <div id="home" class="pages">
-      <a id="icon-top-left" class="home-icon">
-      </a> 
-      <a id="icon-top-right" class="home-icon">
-      </a>
-      <a id="icon-bottom-left" class="home-icon" >
-      </a>
-      <a id="icon-bottom-right" class="home-icon" href="#">
-      </a>
-      <a id="phone-contact" class="contact-icons"></a>
-      <a id="web-contact" class="contact-icons"></a>
-      <a id="info-contact" class="contact-icons"></a>
+      
+      <p class="home-page-text">Do something:</p>
+      <div id="tasks-button-now" class="do-now home-task-button">Now</div>
+      <div id="tasks-button-lt" class="do-long-term home-task-button">Longer term</div>
+      <a href="tel:116 123" class="home-call-button">Call Samaritans</a>
+      
+      <div class="space"></div>
+      <a id="phone-contact" class="contact-icons"><i class="fa fa-phone" aria-hidden="true"></i></a>
+      <a id="web-contact" class="contact-icons"><i class="fa fa-link" aria-hidden="true"></i></a>
+      <a id="info-contact" class="contact-icons"><i class="fa fa-book" aria-hidden="true"></i></a>
+      
+      <div class="space"></div>
+      <a id="thumbs-button" class="home-icon"><i class="fa fa-picture-o" aria-hidden="true"></i></a> 
+      
     </div>
 
     <div class="tasks">
@@ -416,9 +430,6 @@
               </div>
             </div>
         </div>
-        <div class="footer">
-            <a class="back-button home-button"></a>
-        </div>
     </div>
    
     <div id="web" class="pages">
@@ -748,9 +759,6 @@
               </div>
             </div>
         </div>    
-        <div class="footer">
-            <a class="back-button home-button"></a>
-        </div>
     </div>
 
     <div id="tasks" class="pages">
@@ -914,9 +922,6 @@
                 </div>
             </div>
             
-        </div>
-        <div class="footer">
-            <a class="back-button home-button"></a>
         </div>
     </div>
 

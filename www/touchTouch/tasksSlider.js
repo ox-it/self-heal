@@ -26,7 +26,7 @@
 						classes += "favorite ";
 						$(taskElem).addClass("favorite");
 					}
-					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'>&#9829;</div");
+					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'></div");
 					
 				})
 			}); 
@@ -40,10 +40,9 @@
 		filters = $('<div id="taskFilters" class="filterButtons">' + 
 						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
 						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Long term</span>' +
-						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
+						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton"><i class="fa fa-heart" aria-hidden="true"></i></span>' +
 		'</div>')
 		slider = $('<div id="taskSlider">'),
-		backbtn = $('<div id="gallery-back">'),
 		prevTask = $('<a id="prevTask"></a>'),
 		nextTask = $('<a id="nextTask"></a>'),
 		overlayVisible = false;
@@ -77,7 +76,6 @@
 		overlay.hide().appendTo('body');
 		filters.appendTo(overlay);
 		slider.appendTo(overlay);
-		backbtn.appendTo(overlay);
 
 		//filter the list of tasks to just those with the given classname in their dom element
 		var filterTasks = function (className) {
@@ -161,7 +159,17 @@
 		});
 
 		// Listening for clicks on the thumbnails
-		$("#icon-top-right").on('click', function(e){
+		$("#tasks-button-now, #tasks-button-lt").on('click', function(e){
+			$('#taskOverlay').show();
+			$('.filterButton').removeClass('filterButton-active');
+			if ($(e.target).hasClass("do-now")) {
+				$("#nowTasksFilter").addClass('filterButton-active');
+				filterClass = ".single-task.immediate-task";
+			}
+			if ($(e.target).hasClass("do-long-term")) {
+				$("#ongoingTasksFilter").addClass('filterButton-active');
+				filterClass = ".single-task.ongoing-task";
+			}
 
 			$('.tasks').randomize(filterClass);
 
@@ -200,15 +208,6 @@
 				showNext();
 			});
 		}
-
-		$('#gallery-back').click(function(){
-			console.log("Should go back")
-			movevar = false;
-			linkHref = undefined;
-			slider.off('touchmove');
-				hideOverlay();
-		})
-
 
 		// Listen for arrow keys
 		$(window).bind('keydown', function(e){

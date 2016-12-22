@@ -1,5 +1,12 @@
 $(function(){
 		$( document ).ready(function() {
+				if (window.cordova) {
+					if (cordova.platformId == "ios") {
+						$("body").addClass("ios") 
+					} else {
+						$("body").addClass("android") 
+					}
+				}
 		    $('#contacts').hide();
 		    $('#tasks').hide();
 		    $('#web').hide();
@@ -15,8 +22,18 @@ $(function(){
 
 
 	    $('#info-contact').click(function(){
-	        $('#home').hide();
 	        $('#tasks').show();
+	    })
+			$('#header-icon-home').click(function(){
+				console.log("tst home");
+				$('#info').hide();
+				$('#info').hide();
+				$('#tasks').hide();
+				$('#web').hide();
+				$('#contacts').hide();
+				$('#taskOverlay').hide();
+				$('#galleryOverlay').hide();
+				
 	    })
 			$('#header-icon-info').click(function(){
 				if ($("#info").is(":visible")) {
@@ -25,15 +42,10 @@ $(function(){
 	        $('#info').show();
 				}
 	    })
-			$('#icon-bottom-right').click(function(){
-	        $('#info').show();
-	    })
 	    $('#info').click(function(){
-	        $('#home').show();
 	        $('#info').hide();
 	    })
 	    $('#phone-contact').click(function(){
-	        $('#home').hide();
 	        $('#contacts').show();
 					if (navigator && navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(
@@ -67,16 +79,8 @@ $(function(){
 					}
 	    })
 	    $('#web-contact').click(function(){
-	        $('#home').hide();
 	        $('#web').show();
 	    })
-	    $('.home-button').click(function(){
-            hideIcons();
-	        $(this).parent().parent().hide();
-	        $('#home').show();
-	    })
-
-
 	    
 		$( "#menu-icon" ).click(function() {
 	  		var x = document.getElementById("myTopnav");
@@ -103,44 +107,6 @@ $(function(){
 	        unsortedElems.eq(i).replaceWith(elems[i]);
 	    }); 
 	};
-
-	$("#icon-bottom-left").click(function(){
-
-        if ($("#icon-bottom-left").hasClass("moved")){
-            hideIcons();
-		} else {
-			showIcons();
-	    }
-
-    });
-
-	function hideIcons(){
-		$("#web-contact").animate({
-		    left: '-=100px'
-		});
-		$("#info-contact").animate({
-		    left: '-=100px',
-		    top: '+=100px',
-		});
-		$("#phone-contact").animate({
-		    top: '+=100px'
-		});
-        $("#icon-bottom-left").toggleClass("moved");
-	}
-
-	function showIcons(){
-        $("#web-contact").animate({
-            left: '+=100px'
-        });
-        $("#info-contact").animate({
-            left: '+=100px',
-            top: '-=100px',
-        });
-        $("#phone-contact").animate({
-            top: '-=100px'
-        });
-        $("#icon-bottom-left").toggleClass("moved");
-	}
 
 	function mapDistance(lat1, lon1, lat2, lon2){
 		var R = 6371e3; // metres

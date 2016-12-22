@@ -34,7 +34,7 @@
 					if (favoriteImages.indexOf(elemId) >= 0) {
 						$(imageElem).addClass("favorite");
 					}
-					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'>&#9829;</div");
+					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'></div");
 					
 				})
 		}); 
@@ -46,7 +46,7 @@
 
 	var overlay = $('<div id="galleryOverlay">'),
 		filters = $('<div id="imageFilters" class="filterButtons">' + 
-						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton">&#9829;</span>' +
+						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton"><i class="fa fa-heart" aria-hidden="true"></i></span>' +
 		'</div>'),
 		slider = $('<div id="gallerySlider">'),
 		prevArrow = $('<a id="prevArrow"></a>'),
@@ -86,13 +86,7 @@
 		// Creating a placeholder for each image
 		placeholders = $( ('<div class="placeholder"></div>').repeat(items.length) );
 
-		// Hide the gallery if the background is touched / clicked
-		slider.append(placeholders).on('click',function(e){
-
-			if(!($(e.target).is('img') || $(e.target).hasClass('image-fav'))){
-				hideOverlay();
-			}
-		});
+		slider.append(placeholders);
 
 		$('.imageFilterButton').click(function (ev) {
 			if ( $('#imageFilters .imageFilterButton').hasClass('filterButton-active') ) {
@@ -143,8 +137,8 @@
 		});
 
 		// Listening for clicks on the thumbnails
-		$("#icon-top-left").on('click', function(e){
-
+		$("#thumbs-button").on('click', function(e){
+			$('#galleryOverlay').show();
 			$('.thumbs').randomize('a');
 
 			var $this = $(".thumbs").find(filterClass).first(),
@@ -314,6 +308,13 @@
 				});
 
 				placeholders.eq(index).html(holder);
+				// resize image if needed
+				var imgTop = $("#imageFilters").outerHeight(true)+$("#index-header").outerHeight(true) + 20;
+				if (imgTop - this.offset().top > 0) {
+					this.css({"height": window.innerHeight - imgTop - 30});
+				}
+				// place the heart above caption
+				favClone.css({"bottom": $(caption).outerHeight()});
 			});
 		}
 
