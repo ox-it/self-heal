@@ -110,6 +110,11 @@ header #header-icon-info {
     top: 8px;
 }
 
+header i.fa {
+    font-size: 3em;
+    color: grey;
+}
+
 /*----------------------------
   Thumbnails
 -----------------------------*/
@@ -192,13 +197,6 @@ header #header-icon-info {
 -----------------------------*/
 
 #home{
-  /*position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 250px;
-  height: 250px;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);*/
   position: absolute;
   top: 15%;
   width: 100%;
@@ -208,22 +206,6 @@ header #header-icon-info {
 
 #index-header img{
   max-height: 35px;
-}
-
-#links-box{
-  background-image: url("../img/nav-links.png"); 
-}
-
-.home-icon{
-  position: relative;
-  display: inline-block;
-  width: 65px;
-  height: 65px;
-  background-repeat: no-repeat;
-  background-position: center; 
-}
-
-.info-icon{
 }
 
 .home-page-text {
@@ -266,10 +248,16 @@ a.home-call-button, a.home-call-button:visited{
 }
 
 #thumbs-button {
-    background-image: url(../img/picture-icon.png);
     display: block;
-    width: 100%;
-    text-align: center;
+    width: 70px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    color: var(--main-color);
+    font-size: 2.5em;
+    line-height: 2.2em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    border-radius: 10px;
 }
 
 .contact-icons{
@@ -280,19 +268,12 @@ a.home-call-button, a.home-call-button:visited{
   margin: 0 5%;
 }
 
-#phone-contact{
-  background-color: rgb(126, 155, 167);
-  background-image: url("../img/phone.png");
-}
-
-#web-contact{
-  background-color: rgb(101, 181, 116);
-  background-image: url("../img/web.png");
-}
-
-#info-contact{
-  background-color: rgb(83, 189, 170);
-  background-image: url("../img/book.png"); 
+.contact-icons {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  color: var(--main-color);
+  font-size: 2.5em;
+  line-height: 2.2em;
 }
 
 /*----------------------------
