@@ -26,7 +26,7 @@
 						classes += "favorite ";
 						$(taskElem).addClass("favorite");
 					}
-					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'>&#9829;</div");
+					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'></div");
 					
 				})
 			}); 
@@ -40,7 +40,7 @@
 		filters = $('<div id="taskFilters" class="filterButtons">' + 
 						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
 						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Long term</span>' +
-						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton">&#9829;</span>' +
+						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton"><i class="fa fa-heart" aria-hidden="true"></i></span>' +
 		'</div>')
 		slider = $('<div id="taskSlider">'),
 		prevTask = $('<a id="prevTask"></a>'),

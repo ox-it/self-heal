@@ -34,7 +34,7 @@
 					if (favoriteImages.indexOf(elemId) >= 0) {
 						$(imageElem).addClass("favorite");
 					}
-					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'>&#9829;</div");
+					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'></div");
 					
 				})
 		}); 
@@ -46,7 +46,7 @@
 
 	var overlay = $('<div id="galleryOverlay">'),
 		filters = $('<div id="imageFilters" class="filterButtons">' + 
-						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton">&#9829;</span>' +
+						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton"><i class="fa fa-heart" aria-hidden="true"></i></span>' +
 		'</div>'),
 		slider = $('<div id="gallerySlider">'),
 		prevArrow = $('<a id="prevArrow"></a>'),

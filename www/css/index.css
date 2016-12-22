@@ -426,11 +426,15 @@ a.home-call-button, a.home-call-button:visited{
     bottom: 20px;
     right: 10px;
     font-size: 3em;
-    color: grey;
     padding: 20px 10px;
     z-index: 999;
     font-family: fantasy;
 }
-.task-fav.favorite, .image-fav.favorite {
+.task-fav:after, .image-fav:after {
   color: var(--main-color);
+  content: '\f08a';
+  font-family: FontAwesome;
+}
+.task-fav.favorite:after, .image-fav.favorite:after {
+  content: '\f004';
 }
