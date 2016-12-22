@@ -416,6 +416,10 @@ a.home-call-button, a.home-call-button:visited{
   font-family: fantasy;
 }
 
+#favoritesFilter i.fa.fa-heart {
+    pointer-events: none;
+}
+
 .filterButton-active {
     color: white;
     background-color:var(--main-color);
