@@ -83,6 +83,10 @@ body.ios header {
   border-color: var(--main-color);
 }
 
+body.ios .pages {
+  padding-top: 30px;
+}
+
 header{
   background-color:#fff;
   width: 100%;
