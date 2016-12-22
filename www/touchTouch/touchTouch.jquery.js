@@ -237,9 +237,6 @@
 
 			// Raise the visible flag
 			overlayVisible = true;
-			console.log("tstststs");
-			$("#gallerySlider").css( {"top": $("#imageFilters").outerHeight(true)+20} );
-			$("#gallerySlider").height($("#galleryOverlay").outerHeight(true) - 25 - $("#imageFilters").outerHeight(true) - $("#index-header").outerHeight(true));
 		}
 
 		function hideOverlay(){
@@ -311,7 +308,13 @@
 				});
 
 				placeholders.eq(index).html(holder);
-				$(".placeholder-image").height($("#galleryOverlay").outerHeight(true) - 25 - $("#imageFilters").outerHeight(true) - $("#index-header").outerHeight(true));
+				// resize image if needed
+				var imgTop = $("#imageFilters").outerHeight(true)+$("#index-header").outerHeight(true) + 20;
+				if (imgTop - this.offset().top > 0) {
+					this.css({"height": window.innerHeight - imgTop - 30});
+				}
+				// place the heart above caption
+				favClone.css({"bottom": $(caption).outerHeight()});
 			});
 		}
 
