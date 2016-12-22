@@ -323,13 +323,14 @@ a.home-call-button, a.home-call-button:visited{
 }
 
 #info {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  min-height: calc(100% - 60px);
+  height: calc(100% - 60px);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   z-index: 10;
   padding-top: 60px;
+  overflow-y: auto;
 }
 
 #info-text{

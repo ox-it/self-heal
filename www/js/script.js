@@ -37,8 +37,10 @@ $(function(){
 			$('#header-icon-info').click(function(){
 				if ($("#info").is(":visible")) {
 	        $('#info').hide();
+					$("#contacts, #web, #tasks").css({ "position": "initial" });
 				} else {
 	        $('#info').show();
+					$("#contacts, #web, #tasks").css({ "position": "fixed" });
 					if(typeof(window.ga) !== 'undefined') {
 						window.ga.trackView('Info screen');
 					}
@@ -47,6 +49,7 @@ $(function(){
 
 	    $('#info').click(function(){
 	        $('#info').hide();
+					$("#contacts, #web, #tasks").css({ "position": "initial" });
 	    })
 
 			$('#info-contact').click(function(){
