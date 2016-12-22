@@ -78,6 +78,11 @@ section, footer, header{
 /*----------------------------
   The Header
 -----------------------------*/
+body.ios header {
+  border-top: 20px solid;
+  border-color: var(--main-color);
+}
+
 header{
   background-color:#fff;
   width: 100%;
@@ -166,7 +171,7 @@ header i.fa {
 
 .acc-item a{
   text-decoration: none;
-  color: #FF8C1D;
+  color: var(--main-color);
   font-size: 1.5em;
 }
 
@@ -290,7 +295,7 @@ a.home-call-button, a.home-call-button:visited{
   margin: -68px 0 0 -68px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #FF8C1D;
+  border-top: 16px solid var(--main-color);
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
@@ -316,7 +321,7 @@ a.home-call-button, a.home-call-button:visited{
 #info {
   position: absolute;
   width: 100%;
-  min-height: 100%;
+  min-height: calc(100% - 60px);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   z-index: 10;
@@ -427,5 +432,5 @@ a.home-call-button, a.home-call-button:visited{
     font-family: fantasy;
 }
 .task-fav.favorite, .image-fav.favorite {
-  color: #FF8C1D;
+  color: var(--main-color);
 }

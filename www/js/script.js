@@ -1,5 +1,12 @@
 $(function(){
 		$( document ).ready(function() {
+				if (window.cordova) {
+					if (cordova.platformId == "ios") {
+						$("body").addClass("ios") 
+					} else {
+						$("body").addClass("android") 
+					}
+				}
 		    $('#contacts').hide();
 		    $('#tasks').hide();
 		    $('#web').hide();
