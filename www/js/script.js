@@ -18,11 +18,7 @@ $(function(){
 						localStorage.setItem("firstTimeUse", "false");
 					}
 				}
-				if(typeof(window.ga) !== 'undefined') {
-					window.ga.startTrackerWithId('UA-89394041-1');
-					window.ga.trackView('Home screen');
-					window.ga.trackEvent('App', 'Start');
-				}
+				document.addEventListener('deviceready', onDeviceReady, false);
 		});
 
 			$('#header-icon-home').click(function(){
@@ -43,9 +39,9 @@ $(function(){
 	        $('#info').hide();
 				} else {
 	        $('#info').show();
-				}
-				if(typeof(window.ga) !== 'undefined') {
-					window.ga.trackView('Info screen');
+					if(typeof(window.ga) !== 'undefined') {
+						window.ga.trackView('Info screen');
+					}
 				}
 	    })
 
@@ -137,6 +133,14 @@ $(function(){
 		return d;
 	}
 	
+	function onDeviceReady(){
+		if(typeof(window.ga) !== 'undefined') {
+			console.log("started GA Tracker");
+			window.ga.startTrackerWithId('UA-89394041-1');
+			window.ga.trackView('Home screen');
+			window.ga.trackEvent('App', 'Start');
+		}
+	}
 	$('.thumbs').randomize('a');
 	// Initialize the gallery
 	$('.thumbs a').touchTouch();
