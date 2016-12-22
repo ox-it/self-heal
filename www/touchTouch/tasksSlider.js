@@ -190,7 +190,9 @@
 
 			// Preload the previous
 			preload(index-1);
-
+			if(typeof(window.ga) !== 'undefined') {
+				window.ga.trackView('Tasks screen');
+			}
 		});
 
 		// If the browser does not have support
@@ -343,6 +345,9 @@
 			$("#"+ taskFavId).addClass("favorite");
 			$("#"+ taskFavId +" .task-fav").addClass("favorite");
 			favoriteTasks.push(taskFavId);
+			if(typeof(window.ga) !== 'undefined') {
+				window.ga.trackEvent('Favorites', 'added Task to favorites');
+			}
 		}
 		localStorage.setItem("favoriteTasksArray", JSON.stringify(favoriteTasks));
 	};

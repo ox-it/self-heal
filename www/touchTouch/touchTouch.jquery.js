@@ -178,7 +178,9 @@
 
 			// Preload the previous
 			preload(index-1);
-
+			if(typeof(window.ga) !== 'undefined') {
+				window.ga.trackView('Images screen');
+			}
 		});
 
 		// If the browser does not have support
@@ -380,6 +382,9 @@
 			target.addClass("favorite");
 			$("#"+ imageFavId).addClass("favorite");
 			favoriteImages.push(imageFavId);
+			if(typeof(window.ga) !== 'undefined') {
+				window.ga.trackEvent('Favorites', 'added Image to favorites');
+			}
 		}
 		localStorage.setItem("favoriteImagesArray", JSON.stringify(favoriteImages));
 	};

@@ -18,14 +18,14 @@ $(function(){
 						localStorage.setItem("firstTimeUse", "false");
 					}
 				}
+				if(typeof(window.ga) !== 'undefined') {
+					window.ga.startTrackerWithId('UA-89394041-1');
+					window.ga.trackView('Home screen');
+					window.ga.trackEvent('App', 'Start');
+				}
 		});
 
-
-	    $('#info-contact').click(function(){
-	        $('#tasks').show();
-	    })
 			$('#header-icon-home').click(function(){
-				console.log("tst home");
 				$('#info').hide();
 				$('#info').hide();
 				$('#tasks').hide();
@@ -33,18 +33,33 @@ $(function(){
 				$('#contacts').hide();
 				$('#taskOverlay').hide();
 				$('#galleryOverlay').hide();
-				
+				if(typeof(window.ga) !== 'undefined') {
+					window.ga.trackView('Home screen');
+				}
 	    })
+
 			$('#header-icon-info').click(function(){
 				if ($("#info").is(":visible")) {
 	        $('#info').hide();
 				} else {
 	        $('#info').show();
 				}
+				if(typeof(window.ga) !== 'undefined') {
+					window.ga.trackView('Info screen');
+				}
 	    })
+
 	    $('#info').click(function(){
 	        $('#info').hide();
 	    })
+
+			$('#info-contact').click(function(){
+				$('#tasks').show();
+				if(typeof(window.ga) !== 'undefined') {
+					window.ga.trackView('Info-ideas screen');
+				}
+			})
+
 	    $('#phone-contact').click(function(){
 	        $('#contacts').show();
 					if (navigator && navigator.geolocation) {
@@ -70,6 +85,9 @@ $(function(){
 								});
 
 								$contactItems.detach().appendTo($contacts);
+								if(typeof(window.ga) !== 'undefined') {
+									window.ga.trackEvent('Geolocation', 'contacts: proximity sorting');
+								}
 							},
 							function (error) {
 								//on Error
@@ -77,19 +95,16 @@ $(function(){
 							}
 						);
 					}
+					if(typeof(window.ga) !== 'undefined') {
+						window.ga.trackView('Info-contacts screen');
+					}
 	    })
 	    $('#web-contact').click(function(){
 	        $('#web').show();
+					if(typeof(window.ga) !== 'undefined') {
+						window.ga.trackView('Info-weblinks screen');
+					}
 	    })
-	    
-		$( "#menu-icon" ).click(function() {
-	  		var x = document.getElementById("myTopnav");
-		    if (x.className === "topnav") {
-		        x.className += " responsive";
-		    } else {
-		        x.className = "topnav";
-		    }
-		});
 
 	$(".acc-item").click(function() {
 		$(this).find(".acc-hide").toggle("slow");
