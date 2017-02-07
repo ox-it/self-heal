@@ -1,34 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.selfharm.home" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>self-harm</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
-    <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
+<widget id="uk.co.self-healapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <!-- N.B on android the id must be altered to uk.co.self_heal_app since '-' is illegal for android -->
+    
+    <name>Self-Heal</name>
+    <description />
+    <author email="contactus@self-healapp.co.uk" href="http://www.self-healapp.co.uk">University of Oxford</author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="LoadUrlTimeoutValue" value="60000" />
-    <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
-    <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
-    <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
-    <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
-    <plugin name="cordova-plugin-contacts" source="npm" spec="~2.0.1" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
-    <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-device-orientation" source="npm" spec="~1.0.2" />
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
-    <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1" />
-    <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
     <plugin name="cordova-plugin-geolocation" spec="~2.1.0">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To sort contacts by proximiy" />
     </plugin>
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
-    <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" />
-    <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
-    <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
-    <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
-    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <icon src="www/icon.png" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
@@ -37,18 +26,18 @@
         <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
-        <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
-        <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
-        <splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
-        <splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
-        <splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
-        <splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
-        <splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
-        <splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
-        <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
-        <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+        <splash density="land-ldpi" src="www/res/screen/android/splash-land-ldpi.png" />
+        <splash density="land-mdpi" src="www/res/screen/android/splash-land-mdpi.png" />
+        <splash density="land-hdpi" src="www/res/screen/android/splash-land-hdpi.png" />
+        <splash density="land-xhdpi" src="www/res/screen/android/splash-land-xhdpi.png" />
+        <splash density="land-xxhdpi" src="www/res/screen/android/splash-land-xxhdpi.png" />
+        <splash density="land-xxxhdpi" src="www/res/screen/android/splash-land-xxxhdpi.png" />
+        <splash density="port-ldpi" src="www/res/screen/android/splash-port-ldpi.png" />
+        <splash density="port-mdpi" src="www/res/screen/android/splash-port-mdpi.png" />
+        <splash density="port-hdpi" src="www/res/screen/android/splash-port-hdpi.png" />
+        <splash density="port-xhdpi" src="www/res/screen/android/splash-port-xhdpi.png" />
+        <splash density="port-xxhdpi" src="www/res/screen/android/splash-port-xxhdpi.png" />
+        <splash density="port-xxxhdpi" src="www/res/screen/android/splash-port-xxxhdpi.png" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
