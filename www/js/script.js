@@ -21,6 +21,10 @@ $(function(){
 		document.addEventListener('deviceready', onDeviceReady, false);
 	});
 
+	$('#web .acc-text a').click(function(ev){
+		window.open($(ev.target).attr('href'), '_system');
+	});
+
 	$('#header-icon-home').click(function(){
 		$('#info').hide();
 		$('#info').hide();

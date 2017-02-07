@@ -75,6 +75,10 @@ section, footer, header{
   background-color: #E4E4E4;
 }
 
+.pages {
+  overflow-x: hidden; 
+}
+
 /*----------------------------
   The Header
 -----------------------------*/
@@ -333,6 +337,10 @@ a.home-call-button, a.home-call-button:visited{
   overflow-y: auto;
 }
 
+body.ios #info {
+  padding-top: 70px;
+}
+
 #info-text{
   margin: auto;
   font-size: 18px;
@@ -390,6 +398,11 @@ a.home-call-button, a.home-call-button:visited{
     margin-top: 20px;
     display: flex;
 }
+
+body.ios .filterButtons {
+  margin-top: 30px;
+}
+
 #imageFilters {
     width: 15%;
 }
