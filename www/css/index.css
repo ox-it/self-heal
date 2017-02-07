@@ -75,6 +75,10 @@ section, footer, header{
   background-color: #E4E4E4;
 }
 
+.pages {
+  overflow-x: hidden; 
+}
+
 /*----------------------------
   The Header
 -----------------------------*/
@@ -323,13 +327,18 @@ a.home-call-button, a.home-call-button:visited{
 }
 
 #info {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  min-height: calc(100% - 60px);
+  height: calc(100% - 60px);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   z-index: 10;
   padding-top: 60px;
+  overflow-y: auto;
+}
+
+body.ios #info {
+  padding-top: 70px;
 }
 
 #info-text{
@@ -389,6 +398,11 @@ a.home-call-button, a.home-call-button:visited{
     margin-top: 20px;
     display: flex;
 }
+
+body.ios .filterButtons {
+  margin-top: 30px;
+}
+
 #imageFilters {
     width: 15%;
 }
