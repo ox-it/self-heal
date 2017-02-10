@@ -1,6 +1,7 @@
 var cacheName = 'SelfHeal-1';
 var filesToCache = [
-	'/',
+	'/www/',
+	'self-heal/www',
 	'index.html',
 	'css/font-awesome.min.css',
 	'css/index.css',
@@ -44,9 +45,19 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('fetch', function (e) {
 	console.log('Service worker fetch ', e);
+	
+	var localUrl = "http://localhost:8087/";
+	var githubioUrl = "https://ox-it.github.io/self-heal/www/";
+	
 	e.respondWith(
 		caches.match(e.request).then(function (response) {
-			return response || fetch(e.request);
+			if(response) {
+				return response;
+			} else {
+				//nothing in the cache
+				console.warn("couldn't find cache for request", e.request);
+				return response || fetch(e.request);
+			}
 		})
 	);
 });
