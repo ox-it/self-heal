@@ -1,5 +1,6 @@
 var cacheName = 'SelfHeal-1';
 var filesToCache = [
+	'self-heal/www',
 	'index.html',
 	'css/font-awesome.min.css',
 	'css/index.css',
