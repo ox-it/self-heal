@@ -2,7 +2,7 @@ $(function(){
 	
 	if('serviceWorker' in navigator) {
 		navigator.serviceWorker
-				.register('./service-worker.js', {scope:'/www/'})
+				.register('./service-worker.js', {scope:'self-heal/www/'})
 				.then(function () {
 					console.log('Service worker registered');
 				});
