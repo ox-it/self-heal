@@ -52,7 +52,7 @@ $(function(){
 		if (typeof(Storage) !== "undefined") {
 			localStorage.setItem("showFeedback", false);
 		}
-		window.open('https://goo.gl/forms/8dbtrUDY9Wu7lGiQ2', '_system');
+		window.open('https://docs.google.com/forms/d/e/1FAIpQLSdr5RUz9cceSEzJ7tbxP1Cmq599VDaiB5Y101AgkCq4a9BGjw/viewform?usp=sf_link', '_system');
 	});
 	
 	$('#web .acc-text a').click(function(ev){
