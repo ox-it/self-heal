@@ -21,6 +21,9 @@ $(function(){
 		document.addEventListener('deviceready', onDeviceReady, false);
 	});
 
+	$('#close-feedback').click(function(ev){
+		$('#feedback').hide();
+	});
 	$('#web .acc-text a').click(function(ev){
 		window.open($(ev.target).attr('href'), '_system');
 	});
