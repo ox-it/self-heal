@@ -7,6 +7,7 @@ $(function(){
 				$("body").addClass("android") 
 			}
 		}
+		$('#feedback').hide().slideDown();
 		$('#contacts').hide();
 		$('#tasks').hide();
 		$('#web').hide();
@@ -22,7 +23,7 @@ $(function(){
 	});
 
 	$('#close-feedback').click(function(ev){
-		$('#feedback').hide();
+		$('#feedback').slideUp();
 	});
 	$('#web .acc-text a').click(function(ev){
 		window.open($(ev.target).attr('href'), '_system');

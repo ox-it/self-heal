@@ -159,8 +159,9 @@
 		});
 
 		// Listening for clicks on the thumbnails
-		$("#tasks-button-now, #tasks-button-lt").on('click', function(e){
+		$("#feedback-tasks-button-now, #tasks-button-now, #tasks-button-lt").on('click', function(e){
 			$('#taskOverlay').show();
+			$('#feedback').slideUp();
 			$('.filterButton').removeClass('filterButton-active');
 			if ($(e.target).hasClass("do-now")) {
 				$("#nowTasksFilter").addClass('filterButton-active');

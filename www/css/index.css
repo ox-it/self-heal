@@ -473,6 +473,7 @@ body.ios .filterButtons {
   color: white;
   z-index: 110;
   overflow-y: auto;
+  bottom: 0;
 }
 
 body.ios #feedback {
