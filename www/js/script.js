@@ -35,7 +35,7 @@ $(function(){
 		$('#feedback').slideUp();
 		if (typeof(Storage) !== "undefined") {
 			var feedbackDate = new Date();
-			feedbackDate.setDate(feedbackDate.getDate() + 14);
+			feedbackDate.setDate(feedbackDate.getDate() + 7);
 			localStorage.setItem("feedbackDate", feedbackDate);
 		}
 	});
