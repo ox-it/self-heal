@@ -19,10 +19,11 @@ $(function(){
 				feedbackDate = new Date();
 				feedbackDate.setDate(feedbackDate.getDate() + 14);
 				localStorage.setItem("feedbackDate", feedbackDate);
+				localStorage.setItem("showFeedback", "true");
 			} else {
 				$('#info').hide();
 				var now = new Date();
-				if (now > new Date(feedbackDate)) {
+				if (now > new Date(feedbackDate) && localStorage.getItem("showFeedback") == "true") {
 					$('#feedback').delay(500).slideDown();
 				}
 			}
@@ -30,9 +31,30 @@ $(function(){
 		document.addEventListener('deviceready', onDeviceReady, false);
 	});
 
-	$('#close-feedback').click(function(ev){
+	$('#feedback-later, #close-feedback').click(function(ev){
 		$('#feedback').slideUp();
+		if (typeof(Storage) !== "undefined") {
+			var feedbackDate = new Date();
+			feedbackDate.setDate(feedbackDate.getDate() + 14);
+			localStorage.setItem("feedbackDate", feedbackDate);
+		}
 	});
+
+	$('#no-feedback').click(function(ev){
+		$('#feedback').slideUp();
+		if (typeof(Storage) !== "undefined") {
+			localStorage.setItem("showFeedback", false);
+		}
+	});
+	
+	$('#feedback-button, #info-feedback-button').click(function(ev){
+		$('#feedback').slideUp();
+		if (typeof(Storage) !== "undefined") {
+			localStorage.setItem("showFeedback", false);
+		}
+		window.open('https://goo.gl/forms/8dbtrUDY9Wu7lGiQ2', '_system');
+	});
+	
 	$('#web .acc-text a').click(function(ev){
 		window.open($(ev.target).attr('href'), '_system');
 	});
