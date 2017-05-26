@@ -7,16 +7,24 @@ $(function(){
 				$("body").addClass("android") 
 			}
 		}
-		$('#feedback').hide().delay(500).slideDown();
 		$('#contacts').hide();
 		$('#tasks').hide();
 		$('#web').hide();
 		$('#loader-holder').hide();
+		$('#feedback').hide();
 		if (typeof(Storage) !== "undefined") {
-			if (localStorage.getItem("firstTimeUse") == "false") {
-				$('#info').hide();
-			} else {
+			var feedbackDate = localStorage.getItem("feedbackDate");
+			if (!feedbackDate || localStorage.getItem("firstTimeUse") != "false") {
 				localStorage.setItem("firstTimeUse", "false");
+				feedbackDate = new Date();
+				feedbackDate.setDate(feedbackDate.getDate() + 14);
+				localStorage.setItem("feedbackDate", feedbackDate);
+			} else {
+				$('#info').hide();
+				var now = new Date();
+				if (now > new Date(feedbackDate)) {
+					$('#feedback').delay(500).slideDown();
+				}
 			}
 		}
 		document.addEventListener('deviceready', onDeviceReady, false);
