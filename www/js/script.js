@@ -7,7 +7,7 @@ $(function(){
 				$("body").addClass("android") 
 			}
 		}
-		$('#feedback').hide().slideDown();
+		$('#feedback').hide().delay(500).slideDown();
 		$('#contacts').hide();
 		$('#tasks').hide();
 		$('#web').hide();
