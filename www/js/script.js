@@ -47,12 +47,12 @@ $(function(){
 		}
 	});
 	
-	$('#feedback-button, #info-feedback-button').click(function(ev){
+	$('#feedback-button a, #info-feedback-button a').click(function(ev){
 		$('#feedback').slideUp();
 		if (typeof(Storage) !== "undefined") {
 			localStorage.setItem("showFeedback", false);
 		}
-		window.open('https://docs.google.com/forms/d/e/1FAIpQLSdr5RUz9cceSEzJ7tbxP1Cmq599VDaiB5Y101AgkCq4a9BGjw/viewform?usp=sf_link', '_system');
+		window.open($(ev.target).attr('href'), '_system');
 	});
 	
 	$('#web .acc-text a').click(function(ev){

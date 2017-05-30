@@ -511,3 +511,8 @@ body.ios #feedback {
     width: calc(100% - 20px);
     left: 0;
 }
+
+#feedback-button a,
+#info-feedback-button a {
+  text-decoration: none;
+}
