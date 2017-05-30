@@ -480,6 +480,12 @@ body.ios #feedback {
   padding-top: 70px;
 }
 
+.feedback-text.top-panel {
+    background-color: #F0F0F0;
+    color: black;
+    padding: 1.5em 0 1em;
+}
+
 #close-feedback {
     text-align: right;
     padding: 10px;
@@ -487,7 +493,6 @@ body.ios #feedback {
 }
 
 .feedback-page-text {
-    color: white;
     font-size: 2em;
     text-align: center;
 }
@@ -514,5 +519,6 @@ body.ios #feedback {
 
 #feedback-button a,
 #info-feedback-button a {
+  color: white;
   text-decoration: none;
 }
