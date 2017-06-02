@@ -11,16 +11,50 @@ $(function(){
 		$('#tasks').hide();
 		$('#web').hide();
 		$('#loader-holder').hide();
+		$('#feedback').hide();
 		if (typeof(Storage) !== "undefined") {
-			if (localStorage.getItem("firstTimeUse") == "false") {
-				$('#info').hide();
-			} else {
+			var feedbackDate = localStorage.getItem("feedbackDate");
+			if (!feedbackDate || localStorage.getItem("firstTimeUse") != "false") {
 				localStorage.setItem("firstTimeUse", "false");
+				feedbackDate = new Date();
+				feedbackDate.setDate(feedbackDate.getDate() + 14);
+				localStorage.setItem("feedbackDate", feedbackDate);
+				localStorage.setItem("showFeedback", "true");
+			} else {
+				$('#info').hide();
+				var now = new Date();
+				if (now > new Date(feedbackDate) && localStorage.getItem("showFeedback") == "true") {
+					$('#feedback').delay(500).slideDown();
+				}
 			}
 		}
 		document.addEventListener('deviceready', onDeviceReady, false);
 	});
 
+	$('#feedback-later, #close-feedback').click(function(ev){
+		$('#feedback').slideUp();
+		if (typeof(Storage) !== "undefined") {
+			var feedbackDate = new Date();
+			feedbackDate.setDate(feedbackDate.getDate() + 7);
+			localStorage.setItem("feedbackDate", feedbackDate);
+		}
+	});
+
+	$('#no-feedback').click(function(ev){
+		$('#feedback').slideUp();
+		if (typeof(Storage) !== "undefined") {
+			localStorage.setItem("showFeedback", false);
+		}
+	});
+	
+	$('#feedback-button a, #info-feedback-button a').click(function(ev){
+		$('#feedback').slideUp();
+		if (typeof(Storage) !== "undefined") {
+			localStorage.setItem("showFeedback", false);
+		}
+		window.open($(ev.target).attr('href'), '_system');
+	});
+	
 	$('#web .acc-text a').click(function(ev){
 		window.open($(ev.target).attr('href'), '_system');
 	});
