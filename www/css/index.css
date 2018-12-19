@@ -76,7 +76,7 @@ section, footer, header{
 }
 
 .pages {
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 /*----------------------------
@@ -147,6 +147,14 @@ header i.fa {
   justify-content: center;
   padding-bottom: 50px;
   background-color: #F0F0F0;
+}
+.content-header {
+  padding: 1em 0 .5em;
+  text-align:center;
+}
+
+.content-header h2 {
+  margin-bottom: 0.5em;
 }
 
 .acc-item{
@@ -268,7 +276,7 @@ a.home-call-button, a.home-call-button:visited{
     box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     color: #FF8C1D;
     font-size: 2.5em;
-    line-height: 2.2em;
+    line-height: 2.15em;
     box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     border-radius: 10px;
 }
@@ -278,7 +286,7 @@ a.home-call-button, a.home-call-button:visited{
   width: 63px;
   height: 63px;
   display: inline-block;
-  margin: 0 5%;
+  margin: 0 1%;
 }
 
 .contact-icons {
@@ -376,7 +384,9 @@ body.ios #info {
   margin: 0 10px 5px 0;
 }
 
-#info-text .info-contact-icons i.fa {
+#info-text .info-contact-icons i.fa,
+#info-text .info-contact-icons i.fas
+ {
   padding: 5px;
   border-radius: 50%;
   margin: 5px;
@@ -384,6 +394,12 @@ body.ios #info {
   text-align: center;
 }
 
+#info-text i.fas.fa-image {
+  color: #FF8C1D;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 10%;
+}
 #info-text i.fa.fa-heart {
   background-color: transparent;
   margin-right: 10px;

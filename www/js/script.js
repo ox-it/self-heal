@@ -2,14 +2,15 @@ $(function(){
 	$( document ).ready(function() {
 		if (window.cordova) {
 			if (cordova.platformId == "ios") {
-				$("body").addClass("ios") 
+				$("body").addClass("ios")
 			} else {
-				$("body").addClass("android") 
+				$("body").addClass("android")
 			}
 		}
 		$('#contacts').hide();
 		$('#tasks').hide();
 		$('#web').hide();
+		$('#treatments').hide();
 		$('#loader-holder').hide();
 		$('#feedback').hide();
 		if (typeof(Storage) !== "undefined") {
@@ -46,7 +47,7 @@ $(function(){
 			localStorage.setItem("showFeedback", false);
 		}
 	});
-	
+
 	$('#feedback-button a, #info-feedback-button a').click(function(ev){
 		$('#feedback').slideUp();
 		if (typeof(Storage) !== "undefined") {
@@ -54,7 +55,7 @@ $(function(){
 		}
 		window.open($(ev.target).attr('href'), '_system');
 	});
-	
+
 	$('#web .acc-text a').click(function(ev){
 		window.open($(ev.target).attr('href'), '_system');
 	});
@@ -63,6 +64,7 @@ $(function(){
 		$('#info').hide();
 		$('#info').hide();
 		$('#tasks').hide();
+		$('#treatments').hide();
 		$('#web').hide();
 		$('#contacts').hide();
 		$('#taskOverlay').hide();
@@ -71,14 +73,14 @@ $(function(){
 			window.ga.trackView('Home screen');
 		}
     });
-			
+
 	$('#header-icon-info').click(function(){
 		if ($("#info").is(":visible")) {
     		$('#info').hide();
-			$("#contacts, #web, #tasks").css({ "position": "initial" });
+			$("#contacts, #web, #tasks, #treatments").css({ "position": "initial" });
 		} else {
     		$('#info').show();
-			$("#contacts, #web, #tasks").css({ "position": "fixed" });
+			$("#contacts, #web, #tasks, #treatments").css({ "position": "fixed" });
 			if(typeof(window.ga) !== 'undefined') {
 				window.ga.trackView('Info screen');
 			}
@@ -87,7 +89,7 @@ $(function(){
 
     $('#info').click(function(){
         $('#info').hide();
-				$("#contacts, #web, #tasks").css({ "position": "initial" });
+				$("#contacts, #web, #tasks, #treatments").css({ "position": "initial" });
     });
 
 	$('#info-contact').click(function(){
@@ -97,13 +99,20 @@ $(function(){
 		}
 	});
 
+	$('#treatments-contact').click(function(){
+		$('#treatments').show();
+		if(typeof(window.ga) !== 'undefined') {
+			window.ga.trackView('Treatments screen');
+		}
+	});
+
     $('#phone-contact').click(function(){
         $('#contacts').show();
 		if (navigator && navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
 				function (position) {
-					//on Success	
-					
+					//on Success
+
 					var $contacts = $('#contacts .numbers');
 					var $contactItems = $contacts.children('.acc-item');
 
@@ -160,7 +169,7 @@ $(function(){
 			window.ga.trackView('Info-weblinks screen');
 		}
 	});
-	    
+
 	$(".acc-item").click(function() {
 		$(this).find(".acc-hide").toggle("slow");
 	});
@@ -169,11 +178,11 @@ $(function(){
 	    return this.each(function() {
 	      var $this = $(this);
 	      var unsortedElems = $this.find(elements);
-	      var elems = unsortedElems.clone();	      
-	      elems.sort(function() { return (Math.round(Math.random())-0.5); });  
+	      var elems = unsortedElems.clone();
+	      elems.sort(function() { return (Math.round(Math.random())-0.5); });
 	      for(var i=0; i < elems.length; i++)
 	        unsortedElems.eq(i).replaceWith(elems[i]);
-	    }); 
+	    });
 	};
 
 	function mapDistance(lat1, lon1, lat2, lon2){
@@ -189,7 +198,7 @@ $(function(){
 		var d = R * c;
 		return d;
 	}
-	
+
 	function onDeviceReady(){
 		if(typeof(window.ga) !== 'undefined') {
 			console.log("started GA Tracker");
@@ -202,4 +211,4 @@ $(function(){
 	$('.thumbs').randomize('a');
 	// Initialize the gallery
 	$('.thumbs a').touchTouch();
-});	
+});
