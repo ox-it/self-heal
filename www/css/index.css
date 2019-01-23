@@ -73,6 +73,8 @@ section, footer, header{
   height: 50px;
   bottom: 0;
   background-color: #E4E4E4;
+  /*margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  /*margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
 }
 
 .pages {
@@ -82,23 +84,35 @@ section, footer, header{
 /*----------------------------
   The Header
 -----------------------------*/
-body.ios header {
-  border-top: 20px solid;
-  border-color: #FF8C1D;
-}
+
 
 body.ios .pages {
-  padding-top: 30px;
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
 
 header{
   background-color:#fff;
   width: 100%;
   position: fixed;
+  top: 0;
   box-shadow:0 2px 4px rgba(0,0,0,0.3);
-    display: inline-block;
-    padding: 8px 0;
-    z-index: 99;
+  display: inline-block;
+  padding: 8px 0;
+  z-index: 99;
+}
+
+body.ios {
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+
+}
+
+body.ios header {
+  border-top: 5px solid;
+  border-color: #FFFFFF;
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
 
 header h1, header h2{
@@ -116,11 +130,26 @@ header #header-icon-home {
     left: 8px;
     top: 8px;
 }
+body.ios header #header-icon-home {
+  /*border-top: 20px solid;
+  border-color: #FF8C1D;*/
+  top: constant(safe-area-inset-top); /* iOS 11.0 */
+  top: env(safe-area-inset-top); /* iOS 11.2 */
+
+}
 
 header #header-icon-info {
     position: absolute;
     right: 8px;
     top: 8px;
+}
+
+body.ios header #header-icon-info {
+  /*border-top: 20px solid;
+  border-color: #FF8C1D;*/
+  top: constant(safe-area-inset-top); /* iOS 11.0 */
+  top: env(safe-area-inset-top); /* iOS 11.2 */
+
 }
 
 header i.fa {
@@ -145,9 +174,14 @@ header i.fa {
   width: 90%;
   margin: 0 auto;
   justify-content: center;
-  padding-bottom: 50px;
+  padding-bottom: 150px;
   background-color: #F0F0F0;
 }
+
+body.ios .content-holder{
+  top: 35px;
+}
+
 .content-header {
   padding: 1em 0 .5em;
   text-align:center;
@@ -411,12 +445,13 @@ body.ios #info {
     border: 1px solid #FF8C1D;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
 }
 
 body.ios .filterButtons {
-  margin-top: 30px;
+  margin-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  margin-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
 
 #imageFilters {
@@ -468,6 +503,10 @@ body.ios .filterButtons {
     z-index: 999;
     font-family: fantasy;
 }
+.task-fav i, .image-fav i {
+  color:#FF8C1D;
+}
+/*
 .task-fav:after, .image-fav:after {
   color: #FF8C1D;
   content: '\f08a';
@@ -476,7 +515,7 @@ body.ios .filterButtons {
 .task-fav.favorite:after, .image-fav.favorite:after {
   content: '\f004';
 }
-
+*/
 
 
 /* feedback page*/
