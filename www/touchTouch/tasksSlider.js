@@ -7,12 +7,12 @@
 	      var $this = $(this);
 	      var unsortedElems = $this.find(elements);
 	      var elems = unsortedElems.clone();
-	      
-	      elems.sort(function() { return (Math.round(Math.random())-0.5); });  
+
+	      elems.sort(function() { return (Math.round(Math.random())-0.5); });
 
 	      for(var i=0; i < elems.length; i++)
 	        unsortedElems.eq(i).replaceWith(elems[i]);
-	    }); 
+	    });
 	};
 	$.fn.addFavStatus = function(elements) {
 		var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
@@ -22,22 +22,22 @@
 				$.each(taskElems, function (index, taskElem) {
 					var elemId = $(taskElem).attr('id');
 					var classes = " task-fav ";
+					var heart = '<i class="far fa-heart" aria-hidden="true">';
 					if (favoriteTasks.indexOf(elemId) >= 0) {
-						classes += "favorite ";
-						$(taskElem).addClass("favorite");
+						heart = '<i class="fa fa-heart" aria-hidden="true">';
 					}
-					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'></div");
-					
+					$(taskElem).append( "<div class='"+ classes +"' data-task-fav='"+ elemId +"'>" + heart + "</div");
+
 				})
-			}); 
+			});
 	};
 	$('.tasks').randomize(filterClass);
 	$('.tasks').addFavStatus(filterClassAll);
-	
+
 	/* Private variables */
 
 	var overlay = $('<div id="taskOverlay">'),
-		filters = $('<div id="taskFilters" class="filterButtons">' + 
+		filters = $('<div id="taskFilters" class="filterButtons">' +
 						'<span id="nowTasksFilter" data-targetclassname="immediate-task" class="filterButton filterButton-active">Now</span>' +
 						'<span id="ongoingTasksFilter" data-targetclassname="ongoing-task" class="filterButton">Long term</span>' +
 						'<span id="favoritesFilter" data-targetclassname="favorite" class="filterButton"><i class="fa fa-heart" aria-hidden="true"></i></span>' +
@@ -64,7 +64,7 @@
 			slider.empty();
 			placeholders = $( ('<div class="placeholder"></div>').repeat(items.length) );
 			slider.append(placeholders);
-			
+
 			showOverlay(index);
 			offsetSlider(index);
 			showImage(index);
@@ -81,7 +81,7 @@
 		var filterTasks = function (className) {
 			$('.tasks').randomize(filterClass);
 		}
-		
+
 		//init filters
 		$('.filterButton').click(function (ev) {
 			//apply class
@@ -89,7 +89,7 @@
 			$(ev.target).addClass('filterButton-active');
 			var classToShow = ev.target.dataset['targetclassname'];
 			filterClass = '.single-task.' + classToShow;
-			
+
 			resetGallery();
 		});
 
@@ -114,13 +114,13 @@
 
 			var touch = e.originalEvent,
 				startX = touch.changedTouches[0].pageX;
-				if ($(touch.target).hasClass("task-fav")) {
+				if ($(touch.target).parent().hasClass("task-fav")) {
 					e.preventDefault();
 					toggleTaskFavStatus($(touch.target));
 				}
 
 				linkHref = $(this).find('a').first().attr('href');
-				
+
 			slider.on('touchmove',function(e){
 
 				e.preventDefault();
@@ -150,7 +150,7 @@
 
 			if (movevar === false && linkHref !== undefined && !$(ev.target).hasClass("task-fav")){
 				window.open(linkHref, "_system");
-			} 
+			}
 
 			movevar = false;
 			linkHref = undefined;
@@ -292,6 +292,16 @@
 
 
 			var aaa = $(".tasks").find(filterClass).eq(index).clone();
+      console.log(aaa.attr("id"));
+			var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
+			var indexOfFav = favoriteTasks.indexOf( aaa.attr("id") );
+			var heart = '<i class="far fa-heart" aria-hidden="true">';
+
+			if (indexOfFav >= 0) {
+					heart = '<i class="fa fa-heart" aria-hidden="true">';
+			}
+			aaa.children('.task-fav').html(heart);
+
 			placeholders.eq(index).html(aaa);
 		}
 
@@ -333,16 +343,18 @@
 	};
 
 	var toggleTaskFavStatus = function (target) {
-		var taskFavId = target.data("taskFav");
+		var taskFavId = target.parent().data("taskFav");
 		var favoriteTasks = JSON.parse(localStorage.getItem("favoriteTasksArray")) || [];
 		var indexOfFav = favoriteTasks.indexOf(taskFavId);
 		if (indexOfFav >= 0) {
-			target.removeClass("favorite");
+			target.removeClass("fa");
+			target.addClass("far");
 			$("#"+ taskFavId).removeClass("favorite");
 			$("#"+ taskFavId +" .task-fav").removeClass("favorite");
 			favoriteTasks.splice(indexOfFav, 1);
 		} else {
-			target.addClass("favorite");
+			target.removeClass("far");
+			target.addClass("fa");
 			$("#"+ taskFavId).addClass("favorite");
 			$("#"+ taskFavId +" .task-fav").addClass("favorite");
 			favoriteTasks.push(taskFavId);
@@ -352,7 +364,7 @@
 		}
 		localStorage.setItem("favoriteTasksArray", JSON.stringify(favoriteTasks));
 	};
-	
+
 
 	// Initialize the gallery
 	$('.tasks ' + filterClass).tasksSlider();

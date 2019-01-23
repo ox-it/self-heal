@@ -15,12 +15,12 @@
 	      var $this = $(this);
 	      var unsortedElems = $this.find(elements);
 	      var elems = unsortedElems.clone();
-	      
-	      elems.sort(function() { return (Math.round(Math.random())-0.5); });  
+
+	      elems.sort(function() { return (Math.round(Math.random())-0.5); });
 
 	      for(var i=0; i < elems.length; i++)
 	        unsortedElems.eq(i).replaceWith(elems[i]);
-	    }); 
+	    });
 	};
 	$.fn.addFavStatus = function(elements) {
 		var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
@@ -30,14 +30,13 @@
 				$.each(imageElems, function (index, imageElem) {
 					var elemId = $(imageElem).attr('id');
 					var classes = " image-fav ";
-					
+					var heart = '<i class="far fa-heart" aria-hidden="true">';
 					if (favoriteImages.indexOf(elemId) >= 0) {
-						$(imageElem).addClass("favorite");
+					    heart = '<i class="fa fa-heart" aria-hidden="true">';
 					}
-					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'></div");
-					
+					$(imageElem).append( "<div class='"+ classes +"' data-image-fav='"+ elemId +"'>" + heart + "</div");
 				})
-		}); 
+		});
 	};
 
 	$('.thumbs').randomize('a');
@@ -45,8 +44,8 @@
 	/* Private variables */
 
 	var overlay = $('<div id="galleryOverlay">'),
-		filters = $('<div id="imageFilters" class="filterButtons">' + 
-						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton"><i class="fa fa-heart" aria-hidden="true"></i></span>' +
+		filters = $('<div id="imageFilters" class="filterButtons">' +
+						'<span id="imageFavoritesFilter" data-targetclassname="favorite" class="imageFilterButton"><i class="far fa-heart" aria-hidden="true"></i></span>' +
 		'</div>'),
 		slider = $('<div id="gallerySlider">'),
 		prevArrow = $('<a id="prevArrow"></a>'),
@@ -70,7 +69,7 @@
 				slider.empty();
 				placeholders = $( ('<div class="placeholder"></div>').repeat(items.length) );
 				slider.append(placeholders);
-				
+
 				showOverlay(index);
 				offsetSlider(index);
 				showImage(index);
@@ -278,7 +277,7 @@
 
 			// If the index is outside the bonds of the array
 			if(index < 0 || index >= $(".thumbs").find(filterClass).length){
-				
+
 				return false;
 			}
 
@@ -300,9 +299,11 @@
 				var favClone = favElement.clone()
 				var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
 				var indexOfFav = favoriteImages.indexOf( $(".thumbs").find(filterClass).eq(index).attr("id") );
+				var heart = '<i class="far fa-heart" aria-hidden="true">';
 				if (indexOfFav >= 0) {
-					favClone.addClass("favorite");
+						heart = '<i class="fa fa-heart" aria-hidden="true">';
 				}
+				favClone.html(heart);
 				$(holder).append(favClone);
 				favClone.off("click");
 				favClone.on("click", function (ev) {
@@ -371,15 +372,17 @@
 
 	var toggleImageFavStatus = function (target) {
 		console.log(target);
-		var imageFavId = target.data("image-fav");
+		var imageFavId = target.parent().data("image-fav");
 		var favoriteImages = JSON.parse(localStorage.getItem("favoriteImagesArray")) || [];
 		var indexOfFav = favoriteImages.indexOf(imageFavId);
 		if (indexOfFav >= 0) {
-			target.removeClass("favorite");
+			target.removeClass("fa");
+			target.addClass("far");
 			$("#"+ imageFavId).removeClass("favorite");
 			favoriteImages.splice(indexOfFav, 1);
 		} else {
-			target.addClass("favorite");
+			target.removeClass("far");
+			target.addClass("fa");
 			$("#"+ imageFavId).addClass("favorite");
 			favoriteImages.push(imageFavId);
 			if(typeof(window.ga) !== 'undefined') {
